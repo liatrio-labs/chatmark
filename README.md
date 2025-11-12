@@ -1,4 +1,4 @@
-# AI Conversation Converter
+# Chatmark
 
 A standalone Typer CLI tool for converting AI conversation exports from
 various IDEs and CLI tools (Windsurf, Cursor, VS Code, Claude Code, Codex CLI,
@@ -109,12 +109,12 @@ improvements are needed:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd ai-conversation-converter
+cd chatmark
 
 # Install dependencies with uv
 uv sync
 
-# Run the script
+# Run the script (current state - will be replaced by chatmark CLI)
 uv run md_to_html.py document.md
 ```
 

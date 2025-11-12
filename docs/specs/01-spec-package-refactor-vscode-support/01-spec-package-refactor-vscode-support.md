@@ -10,7 +10,7 @@ This specification defines the refactoring of the `md_to_html.py` script into a 
 
 - Refactor `md_to_html.py` into a proper Python package with domain-driven structure
 - Implement VS Code JSON parser that converts VS Code conversation exports to the tool's internal markdown format standard
-- Create a new CLI entry point (`ai-conversation-converter`) using Typer console scripts
+- Create a new CLI entry point (`chatmark`) using Typer console scripts
 - Establish comprehensive test suite using strict TDD workflow
 - Support three output formats: Markdown, HTML, and PDF
 - Design architecture for easy addition of future input/output formats
@@ -25,7 +25,7 @@ This specification defines the refactoring of the `md_to_html.py` script into a 
 
 **As a developer**, I want comprehensive test coverage with fixtures so that I can confidently refactor and add features without breaking existing functionality.
 
-**As a user**, I want a consistent CLI interface (`ai-conversation-converter`) so that I can use the tool like other modern Python CLI applications.
+**As a user**, I want a consistent CLI interface (`chatmark`) so that I can use the tool like other modern Python CLI applications.
 
 ## Demoable Units of Work
 
@@ -36,18 +36,18 @@ This specification defines the refactoring of the `md_to_html.py` script into a 
 **Demo Criteria:**
 
 - Test infrastructure established: `tests/` directory structure, `conftest.py` with pytest fixtures, test discovery working
-- Package structure exists with `ai_conversation_converter/` directory containing `core/`, `parsers/`, `exporters/`, and `cli.py`
+- Package structure exists with `chatmark/` directory containing `core/`, `parsers/`, `exporters/`, and `cli.py`
 - Unit tests written first (TDD red phase) for core conversion functions, then implementation passes tests (green phase)
 - All existing Cursor markdown-to-HTML functionality works through the new package structure with tests
-- CLI command `ai-conversation-converter` is available and functional with integration tests
+- CLI command `chatmark` is available and functional with integration tests
 - Test fixtures directory created: `tests/fixtures/` with sample Cursor markdown files
 
 **Proof Artifacts:**
 
 - Test infrastructure: `uv run pytest tests/ -v` runs successfully (may show failing tests initially per TDD)
-- Directory structure: `tree ai_conversation_converter/` and `tree tests/` showing organized modules and test structure
-- CLI help output: `ai-conversation-converter --help` showing available commands
-- Successful Cursor markdown conversion: `ai-conversation-converter convert examples/cursor-ide-example.md --format cursor-md --export html --output test.html`
+- Directory structure: `tree chatmark/` and `tree tests/` showing organized modules and test structure
+- CLI help output: `chatmark --help` showing available commands
+- Successful Cursor markdown conversion: `chatmark convert examples/cursor-ide-example.md --format cursor-md --export html --output test.html`
 - Test output: `uv run pytest tests/ -v` showing passing tests for core functionality
 - Test fixtures: `tests/fixtures/` directory with Cursor markdown samples (based on `examples/cursor-ide-example.md`)
 
@@ -67,7 +67,7 @@ This specification defines the refactoring of the `md_to_html.py` script into a 
 **Proof Artifacts:**
 
 - Test output: `uv run pytest tests/test_parsers/test_vscode_parser.py -v` showing passing parser tests
-- Successful VS Code conversion: `ai-conversation-converter convert examples/vs-code-ide-example.json --format vscode --export markdown --output test.md`
+- Successful VS Code conversion: `chatmark convert examples/vs-code-ide-example.json --format vscode --export markdown --output test.md`
 - Generated markdown file showing User/AI conversation entries conforming to the tool's internal markdown format standard (which matches the structure from `examples/cursor-ide-example.md`)
 - Test fixtures: `tests/fixtures/vscode_*.json` with sample VS Code exports (based on `examples/vs-code-ide-example.json`)
 - Integration test output: `uv run pytest tests/integration/test_cli_vscode.py -v` showing CLI integration tests passing with `examples/vs-code-ide-example.json`
@@ -87,19 +87,19 @@ This specification defines the refactoring of the `md_to_html.py` script into a 
 
 **Proof Artifacts:**
 
-- CLI help showing export options: `ai-conversation-converter convert --help`
+- CLI help showing export options: `chatmark convert --help`
 - Successful exports from Cursor markdown: Three output files (`.md`, `.html`, `.pdf`) generated from `examples/cursor-ide-example.md` using `--format cursor-md`
 - Successful exports from VS Code JSON: Three output files (`.md`, `.html`, `.pdf`) generated from `examples/vs-code-ide-example.json`
 - Test output: `uv run pytest tests/test_exporters/ -v` showing passing exporter tests for both input formats
 - Generated PDF files open correctly and display formatted content for both example files
 - Integration test output: `uv run pytest tests/integration/test_cli_exports.py -v` showing all export format tests passing with both `examples/cursor-ide-example.md` and `examples/vs-code-ide-example.json`
-- Test coverage: `uv run pytest tests/ --cov=ai_conversation_converter --cov-report=term-missing` showing >80% coverage for core modules
+- Test coverage: `uv run pytest tests/ --cov=chatmark --cov-report=term-missing` showing >80% coverage for core modules
 
 ## Functional Requirements
 
 1. **The system shall** organize code into a domain-driven package structure with `core/`, `parsers/`, and `exporters/` modules.
 
-2. **The system shall** provide a CLI entry point `ai-conversation-converter` registered in `pyproject.toml` using `[project.scripts]`.
+2. **The system shall** provide a CLI entry point `chatmark` registered in `pyproject.toml` using `[project.scripts]`.
 
 3. **The system shall** support parsing VS Code JSON conversation exports and converting them to the tool's internal markdown format standard.
 
@@ -174,7 +174,7 @@ Implementation must follow established repository patterns and conventions:
 **Package Structure:**
 
 ```text
-ai_conversation_converter/
+chatmark/
   __init__.py
   core/
     __init__.py
@@ -197,9 +197,9 @@ ai_conversation_converter/
 
 **CLI Entry Point:**
 
-- Register in `pyproject.toml`: `[project.scripts]` with `ai-conversation-converter = "ai_conversation_converter.cli:app"`
+- Register in `pyproject.toml`: `[project.scripts]` with `chatmark = "chatmark.cli:app"`
 - Use Typer's app pattern with subcommands: `convert` command for conversions
-- CLI signature: `ai-conversation-converter convert <input_file> --format <format> --export <export_format> [--output <file>]`
+- CLI signature: `chatmark convert <input_file> --format <format> --export <export_format> [--output <file>]`
 
 **Internal Markdown Format Standard:**
 
@@ -243,11 +243,11 @@ The tool defines its own internal markdown format standard that serves as the ca
 
 ## Success Metrics
 
-1. **Package Structure**: Package successfully installed and importable: `python -c "import ai_conversation_converter; print(ai_conversation_converter.__version__)"`
+1. **Package Structure**: Package successfully installed and importable: `python -c "import chatmark; print(chatmark.__version__)"`
 
-2. **CLI Functionality**: CLI command available and functional: `ai-conversation-converter --help` shows expected commands
+2. **CLI Functionality**: CLI command available and functional: `chatmark --help` shows expected commands
 
-3. **VS Code Parsing**: Successfully parse and convert VS Code JSON: `ai-conversation-converter convert examples/vs-code-ide-example.json --format vscode --export markdown` produces valid markdown conforming to the tool's internal markdown format standard (as defined in lines 206-211), ensuring the output matches the structure expected by existing HTML/PDF exporters' regex patterns and matches the structure from `examples/cursor-ide-example.md`
+3. **VS Code Parsing**: Successfully parse and convert VS Code JSON: `chatmark convert examples/vs-code-ide-example.json --format vscode --export markdown` produces valid markdown conforming to the tool's internal markdown format standard (as defined in lines 206-211), ensuring the output matches the structure expected by existing HTML/PDF exporters' regex patterns and matches the structure from `examples/cursor-ide-example.md`
 
 4. **Test Coverage**: Test coverage >80% for core modules (`core/`, `parsers/`, `exporters/`) achieved incrementally as each module is developed with TDD, tested against both `examples/cursor-ide-example.md` and `examples/vs-code-ide-example.json`
 

@@ -1,5 +1,5 @@
 def main():
-    print("Hello from ai-conversation-converter!")
+    print("Hello from chatmark!")
 
 
 if __name__ == "__main__":
