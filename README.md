@@ -25,7 +25,9 @@ The tool is currently a functional Typer CLI application (`md_to_html.py`) that:
 - Generates table of contents automatically
 - Supports User/Cursor conversation entry detection
 - Optionally generates PDF versions using WeasyPrint
-- Uses PEP 723 inline script dependencies with `uv`
+- Uses `uv` for dependency management with `pyproject.toml`
+- Includes CI/CD pipeline for automated testing and linting
+- Configured with pre-commit hooks for code quality
 
 ## Usage
 
@@ -47,9 +49,9 @@ improvements are needed:
 
 ### 1. Project Structure
 
-- [ ] Create proper `pyproject.toml` with project metadata
+- [x] Create proper `pyproject.toml` with project metadata
 - [ ] Set up package structure (if needed)
-- [ ] Add proper dependency management
+- [x] Add proper dependency management
 - [ ] Create installation instructions
 
 ### 2. Enhanced Input Format Support
@@ -71,7 +73,7 @@ improvements are needed:
 - [ ] Add unit tests for conversion functions
 - [ ] Add integration tests for CLI
 - [ ] Add test fixtures with sample conversations
-- [ ] Set up CI/CD pipeline
+- [x] Set up CI/CD pipeline
 
 ### 5. Documentation
 
@@ -100,16 +102,40 @@ improvements are needed:
 ### Requirements
 
 - Python 3.11+
-- `uv` (for script execution)
+- `uv` (for dependency management and script execution)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd ai-conversation-converter
+
+# Install dependencies with uv
+uv sync
+
+# Run the script
+uv run md_to_html.py document.md
+```
 
 ### Dependencies
 
-The script uses PEP 723 inline dependencies:
+Dependencies are managed via `pyproject.toml` and can be installed with `uv sync`:
+
+**Runtime dependencies:**
 
 - `markdown>=3.5`
 - `typer>=0.12`
 - `rich>=13.0`
 - `weasyprint>=62.0` (optional, for PDF generation)
+
+**Development dependencies:**
+
+- `ruff>=0.14.4` (linting and formatting)
+- `pytest>=9.0.1` (testing)
+- `pre-commit>=4.4.0` (git hooks)
+
+The script also supports PEP 723 inline dependencies for standalone execution.
 
 ## License
 
