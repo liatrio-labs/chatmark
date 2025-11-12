@@ -20,7 +20,7 @@ specified, a timestamp suffix is automatically added to the filename.
 import re
 from datetime import datetime
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -30,11 +30,14 @@ try:
     import markdown
 except ImportError:
     console = Console(stderr=True)
-    console.print("[bold red]Error:[/] markdown library not found. Install with: [cyan]uv add --script md_to_html.py markdown[/]")
+    console.print(
+        "[bold red]Error:[/] markdown library not found. Install with: [cyan]uv add --script md_to_html.py markdown[/]"
+    )
     raise typer.Exit(1)
 
 try:
-    from weasyprint import HTML as WeasyHTML, CSS as WeasyCSS
+    from weasyprint import CSS as WeasyCSS
+    from weasyprint import HTML as WeasyHTML
     from weasyprint.text.fonts import FontConfiguration
 except ImportError:
     weasyprint_available = False
@@ -541,24 +544,24 @@ def slugify(text):
     """Convert text to a URL-friendly slug."""
     # Convert to lowercase and replace spaces/special chars with hyphens
     text = text.lower()
-    text = re.sub(r'[^\w\s-]', '', text)
-    text = re.sub(r'[-\s]+', '-', text)
-    return text.strip('-')
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[-\s]+", "-", text)
+    return text.strip("-")
 
 
 def add_heading_ids(html_content):
     """Add ID attributes to headings for anchor links."""
     # Pattern to match headings
-    heading_pattern = re.compile(r'<h([1-6])>(.*?)</h\1>', re.DOTALL)
-    
+    heading_pattern = re.compile(r"<h([1-6])>(.*?)</h\1>", re.DOTALL)
+
     def add_id(match):
         level = match.group(1)
         content = match.group(2)
         # Extract text content (remove any HTML tags)
-        text_content = re.sub(r'<[^>]+>', '', content)
+        text_content = re.sub(r"<[^>]+>", "", content)
         heading_id = slugify(text_content)
         return f'<h{level} id="{heading_id}">{content}</h{level}>'
-    
+
     return heading_pattern.sub(add_id, html_content)
 
 
@@ -566,51 +569,52 @@ def extract_user_cursor_entries_from_html(html_content):
     """Extract User and Cursor entries from HTML content that have IDs."""
     entries = []
     # Pattern to match <p id="user-X"> or <p id="cursor-X">
-    pattern = re.compile(r'<p id="(user|cursor)-(\d+)"><strong>(User|Cursor)</strong></p>', re.IGNORECASE)
-    
+    pattern = re.compile(
+        r'<p id="(user|cursor)-(\d+)"><strong>(User|Cursor)</strong></p>', re.IGNORECASE
+    )
+
     for match in pattern.finditer(html_content):
         speaker_type = match.group(3)  # "User" or "Cursor"
         entry_num = int(match.group(2))
-        
+
         # Get preview text from next non-empty paragraph (up to 100 chars)
         # Find the position after this match
         start_pos = match.end()
         # Look for the next <p> tag that's not empty
-        next_p_match = re.search(r'<p[^>]*>(.*?)</p>', html_content[start_pos:start_pos+500], re.DOTALL)
-        
+        next_p_match = re.search(
+            r"<p[^>]*>(.*?)</p>", html_content[start_pos : start_pos + 500], re.DOTALL
+        )
+
         preview_text = ""
         if next_p_match:
-            preview_text = re.sub(r'<[^>]+>', '', next_p_match.group(1)).strip()
+            preview_text = re.sub(r"<[^>]+>", "", next_p_match.group(1)).strip()
             # Remove any HTML entities and clean up
-            preview_text = preview_text.replace('<br />', ' ').replace('\n', ' ')
-            preview_text = ' '.join(preview_text.split())
+            preview_text = preview_text.replace("<br />", " ").replace("\n", " ")
+            preview_text = " ".join(preview_text.split())
             if len(preview_text) > 100:
-                preview_text = preview_text[:97] + '...'
-        
+                preview_text = preview_text[:97] + "..."
+
         entry_id = f"{speaker_type.lower()}-{entry_num}"
-        entries.append({
-            'type': speaker_type,
-            'id': entry_id,
-            'number': entry_num,
-            'preview': preview_text
-        })
-    
+        entries.append(
+            {"type": speaker_type, "id": entry_id, "number": entry_num, "preview": preview_text}
+        )
+
     return entries
 
 
 def add_user_cursor_ids(html_content):
     """Add IDs to User and Cursor paragraphs in HTML."""
     # Pattern to match <p><strong>User</strong></p> or <p><strong>Cursor</strong></p>
-    pattern = re.compile(r'(<p><strong>(User|Cursor)</strong></p>)', re.IGNORECASE)
-    
-    entry_num = {'User': 0, 'Cursor': 0}
-    
+    pattern = re.compile(r"(<p><strong>(User|Cursor)</strong></p>)", re.IGNORECASE)
+
+    entry_num = {"User": 0, "Cursor": 0}
+
     def add_id(match):
         speaker = match.group(2)
         entry_num[speaker] += 1
         entry_id = f"{speaker.lower()}-{entry_num[speaker]}"
         return f'<p id="{entry_id}"><strong>{speaker}</strong></p>'
-    
+
     return pattern.sub(add_id, html_content)
 
 
@@ -618,39 +622,39 @@ def extract_headings(html_content):
     """Extract all headings from HTML content and return list of (level, id, text) tuples."""
     headings = []
     heading_pattern = re.compile(r'<h([1-6]) id="([^"]+)">(.*?)</h\1>', re.DOTALL)
-    
+
     for match in heading_pattern.finditer(html_content):
         level = int(match.group(1))
         heading_id = match.group(2)
         content = match.group(3)
         # Extract text content (remove any HTML tags)
-        text_content = re.sub(r'<[^>]+>', '', content).strip()
+        text_content = re.sub(r"<[^>]+>", "", content).strip()
         headings.append((level, heading_id, text_content))
-    
+
     return headings
 
 
 def generate_table_of_contents(headings, user_cursor_entries=None):
     """Generate HTML for table of contents from headings list as a nested tree structure.
-    
+
     Args:
         headings: List of (level, id, text) tuples for headings
         user_cursor_entries: Optional list of User/Cursor entry dicts
     """
     has_user_cursor = user_cursor_entries and len(user_cursor_entries) > 0
-    
+
     # If we have User/Cursor entries, use them instead of headings
     if has_user_cursor:
         toc_items = []
         for entry in user_cursor_entries:
-            entry_type = entry['type']
-            entry_id = entry['id']
-            entry_num = entry['number']
-            preview = entry['preview']
-            
-            css_class = 'user-entry' if entry_type == 'User' else 'cursor-entry'
-            link_class = 'toc-link toc-user' if entry_type == 'User' else 'toc-link toc-cursor'
-            
+            entry_type = entry["type"]
+            entry_id = entry["id"]
+            entry_num = entry["number"]
+            preview = entry["preview"]
+
+            css_class = "user-entry" if entry_type == "User" else "cursor-entry"
+            link_class = "toc-link toc-user" if entry_type == "User" else "toc-link toc-cursor"
+
             toc_items.append(
                 f'        <li class="{css_class}">'
                 f'<a href="#{entry_id}" class="{link_class}">'
@@ -658,88 +662,88 @@ def generate_table_of_contents(headings, user_cursor_entries=None):
                 f'<span class="toc-divider">❱</span>'
                 f'<span class="preview-text">{preview}</span></a></li>'
             )
-        
+
         toc_html = f"""    <div class="table-of-contents">
         <h2 id="table-of-contents">Table of Contents</h2>
         <ul class="toc-list">
 {chr(10).join(toc_items)}
         </ul>
     </div>"""
-        
+
         return toc_html
-    
+
     # Otherwise, use headings tree structure
     if not headings:
         return ""
-    
+
     # Filter out the first h1 (document title)
     filtered_headings = []
     first_heading_skipped = False
-    
+
     for level, heading_id, text in headings:
         # Skip the first h1 if it's the document title
         if level == 1 and not first_heading_skipped:
             first_heading_skipped = True
             continue
         filtered_headings.append((level, heading_id, text))
-    
+
     if not filtered_headings:
         return ""
-    
+
     # Build nested tree structure
     def build_tree(items, start_idx=0, current_level=2, indent=8):
         """Recursively build nested list structure."""
         html_parts = []
         i = start_idx
-        indent_str = ' ' * indent
-        
+        indent_str = " " * indent
+
         while i < len(items):
             level, heading_id, text = items[i]
-            
+
             # If we've gone back to a higher level, we're done with this branch
             if level < current_level:
                 break
-            
+
             # If this is at our current level, add it
             if level == current_level:
                 html_parts.append(f'{indent_str}<li><a href="#{heading_id}">{text}</a>')
                 i += 1
-                
+
                 # Check if next items are children
                 if i < len(items) and items[i][0] > current_level:
                     # Recursively add children
                     child_html, new_idx = build_tree(items, i, current_level + 1, indent + 4)
                     html_parts.append(child_html)
                     i = new_idx
-                
-                html_parts.append(f'{indent_str}</li>')
+
+                html_parts.append(f"{indent_str}</li>")
             else:
                 # This shouldn't happen if structure is correct, but handle it
                 break
-        
-        tree_html = '\n'.join(html_parts)
+
+        tree_html = "\n".join(html_parts)
         if tree_html.strip():
-            return f'{indent_str}<ul>\n{tree_html}\n{indent_str}</ul>', i
-        return '', i
-    
+            return f"{indent_str}<ul>\n{tree_html}\n{indent_str}</ul>", i
+        return "", i
+
     tree_html, _ = build_tree(filtered_headings)
-    
+
     if not tree_html:
         return ""
-    
+
     # Remove the outer <ul> wrapper since we already have .toc-list
     tree_html = tree_html.strip()
-    if tree_html.startswith('<ul>') and tree_html.endswith('</ul>'):
+    if tree_html.startswith("<ul>") and tree_html.endswith("</ul>"):
         # Extract content between <ul> tags
         tree_html = tree_html[4:-5].strip()
-    
+
     toc_html = f"""    <div class="table-of-contents">
         <h2 id="table-of-contents">Table of Contents</h2>
         <ul class="toc-list">
 {tree_html}
         </ul>
     </div>"""
-    
+
     return toc_html
 
 
@@ -747,105 +751,109 @@ def add_back_to_top_links(html_content):
     """Add 'Back to TOC' links after h2 headings and User/Cursor entries, excluding the Table of Contents heading."""
     # Pattern to match h2 headings, but exclude the table-of-contents one
     h2_pattern = re.compile(r'(<h2 id="table-of-contents">.*?</h2>)|(<h2[^>]*>.*?</h2>)', re.DOTALL)
-    
+
     def add_back_link_h2(match):
         h2_tag = match.group(0)
         # Skip if this is the table-of-contents heading
         if 'id="table-of-contents"' in h2_tag:
             return h2_tag
         return f'{h2_tag}\n    <div class="back-to-top"><a href="#table-of-contents">↑ Back to TOC</a></div>'
-    
+
     html_content = h2_pattern.sub(add_back_link_h2, html_content)
-    
+
     # Pattern to match User/Cursor paragraphs with IDs
-    user_cursor_pattern = re.compile(r'(<p id="(user|cursor)-\d+"><strong>(User|Cursor)</strong></p>)', re.IGNORECASE)
-    
+    user_cursor_pattern = re.compile(
+        r'(<p id="(user|cursor)-\d+"><strong>(User|Cursor)</strong></p>)', re.IGNORECASE
+    )
+
     def add_back_link_user_cursor(match):
         p_tag = match.group(0)
         return f'{p_tag}\n    <div class="back-to-top"><a href="#table-of-contents">↑ Back to TOC</a></div>'
-    
+
     html_content = user_cursor_pattern.sub(add_back_link_user_cursor, html_content)
-    
+
     return html_content
 
 
 def convert_markdown_to_html(markdown_file: Path, output_file: Path = None) -> Path:
     """
     Convert a markdown file to HTML with Liatrio dark theme styling.
-    
+
     Args:
         markdown_file: Path to input markdown file
         output_file: Optional path to output HTML file. If not provided,
                      uses the same name as input with timestamp suffix and .html extension.
-    
+
     Returns:
         Path to the created HTML file
     """
     if not markdown_file.exists():
         raise FileNotFoundError(f"Markdown file not found: {markdown_file}")
-    
+
     # Determine output file path
     if output_file is None:
         # Add timestamp suffix to filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = markdown_file.parent / f"{markdown_file.stem}_{timestamp}.html"
-    
+
     # Read markdown content
-    with open(markdown_file, 'r', encoding='utf-8') as f:
+    with open(markdown_file, encoding="utf-8") as f:
         markdown_content = f.read()
-    
+
     # Extract User/Cursor entries before conversion (for initial processing)
     # We'll re-extract from HTML after IDs are added to ensure accuracy
-    
+
     # Configure markdown extensions
     md_extensions = [
-        'fenced_code',
-        'tables',
-        'nl2br',
-        'sane_lists',
-        'toc',
+        "fenced_code",
+        "tables",
+        "nl2br",
+        "sane_lists",
+        "toc",
     ]
-    
+
     # Convert markdown to HTML
     md = markdown.Markdown(extensions=md_extensions)
     html_body = md.convert(markdown_content)
-    
+
     # Add IDs to User/Cursor paragraphs
     html_body = add_user_cursor_ids(html_body)
-    
+
     # Extract User/Cursor entries from HTML (after IDs are added)
     # This ensures we only include entries that actually have IDs
     user_cursor_entries = extract_user_cursor_entries_from_html(html_body)
-    
+
     # Add IDs to headings for anchor links
     html_body = add_heading_ids(html_body)
-    
+
     # Extract headings for table of contents
     headings = extract_headings(html_body)
-    
+
     # Generate table of contents (with User/Cursor entries if present)
     toc_html = generate_table_of_contents(headings, user_cursor_entries)
-    
+
     # Insert table of contents after the first h1 heading
     if toc_html:
-        h1_pattern = re.compile(r'(<h1[^>]*>.*?</h1>)', re.DOTALL)
+        h1_pattern = re.compile(r"(<h1[^>]*>.*?</h1>)", re.DOTALL)
+
         def insert_toc(match):
             h1_tag = match.group(1)
-            return f'{h1_tag}\n{toc_html}\n    <hr />'
+            return f"{h1_tag}\n{toc_html}\n    <hr />"
+
         html_body = h1_pattern.sub(insert_toc, html_body, count=1)
-    
+
     # Add "Back to TOC" links after h2 headings
     if toc_html:
         html_body = add_back_to_top_links(html_body)
-    
+
     # Get title from first heading or filename
-    title_match = re.search(r'<h1[^>]*>(.*?)</h1>', html_body, re.DOTALL)
+    title_match = re.search(r"<h1[^>]*>(.*?)</h1>", html_body, re.DOTALL)
     if title_match:
-        title_text = re.sub(r'<[^>]+>', '', title_match.group(1))
+        title_text = re.sub(r"<[^>]+>", "", title_match.group(1))
         title = f"{title_text} - Liatrio Documentation"
     else:
         title = f"{markdown_file.stem} - Liatrio Documentation"
-    
+
     # Build complete HTML document
     html_document = f"""<!DOCTYPE html>
 <html lang="en">
@@ -869,35 +877,37 @@ def convert_markdown_to_html(markdown_file: Path, output_file: Path = None) -> P
 </body>
 
 </html>"""
-    
+
     # Write HTML file
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         f.write(html_document)
-    
+
     return output_file
 
 
 def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
     """
     Convert HTML file to PDF using WeasyPrint with improved styling.
-    
+
     Args:
         html_file: Path to input HTML file
         pdf_file: Path to output PDF file
-    
+
     Returns:
         Path to the created PDF file
     """
     if not weasyprint_available:
-        raise ImportError("WeasyPrint is not available. Install with: uv add --script md_to_html.py weasyprint")
-    
+        raise ImportError(
+            "WeasyPrint is not available. Install with: uv add --script md_to_html.py weasyprint"
+        )
+
     if not html_file.exists():
         raise FileNotFoundError(f"HTML file not found: {html_file}")
-    
+
     # Read HTML content
-    with open(html_file, 'r', encoding='utf-8') as f:
+    with open(html_file, encoding="utf-8") as f:
         html_content = f.read()
-    
+
     # PDF-specific CSS with fixes for page breaks and code wrapping
     pdf_css = """
         /* Page setup - no margins */
@@ -906,14 +916,14 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             margin: 0mm;
             padding: 0mm;
         }
-        
+
         /* Preserve dark theme colors */
         html {
             background-color: #111111 !important;
             margin: 0 !important;
             padding: 0 !important;
         }
-        
+
         body {
             background-color: #111111 !important;
             margin: 0 !important;
@@ -921,7 +931,7 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             color: #ffffff !important;
             min-height: 100vh !important;
         }
-        
+
         /* Container styling */
         .container {
             background-color: #111111 !important;
@@ -930,14 +940,14 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             max-width: none !important;
             width: 100% !important;
         }
-        
+
         /* Preserve colors in PDF */
         * {
             -weasy-print-color-adjust: exact !important;
             color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        
+
         /* Improved page break handling - less intrusive */
         /* Only avoid breaks for very small elements */
         h1, h2, h3, h4, h5, h6 {
@@ -945,14 +955,14 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             orphans: 3;
             widows: 3;
         }
-        
+
         /* Allow natural breaks for larger blocks */
         p {
             page-break-inside: auto;
             orphans: 2;
             widows: 2;
         }
-        
+
         /* Code blocks - allow wrapping and natural breaks */
         pre {
             background-color: #1e1e1e !important;
@@ -969,7 +979,7 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             orphans: 2;
             widows: 2;
         }
-        
+
         /* Inline code - wrap long strings */
         code {
             background-color: #1e1e1e !important;
@@ -983,7 +993,7 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             word-break: break-all !important;
             max-width: 100% !important;
         }
-        
+
         /* Pre code - ensure wrapping */
         pre code {
             background: none !important;
@@ -995,79 +1005,78 @@ def convert_html_to_pdf(html_file: Path, pdf_file: Path) -> Path:
             word-break: break-all !important;
             max-width: 100% !important;
         }
-        
+
         /* Tables - allow breaks but try to keep rows together */
         table {
             page-break-inside: auto;
             width: 100% !important;
             table-layout: fixed;
         }
-        
+
         tr {
             page-break-inside: avoid;
         }
-        
+
         /* Blockquotes - allow natural breaks */
         blockquote {
             page-break-inside: auto;
             orphans: 2;
             widows: 2;
         }
-        
+
         /* Lists - allow breaks but keep items together */
         ul, ol {
             page-break-inside: auto;
         }
-        
+
         li {
             page-break-inside: avoid;
             orphans: 2;
             widows: 2;
         }
-        
+
         /* Links styling */
         a {
             color: #24AE1D !important;
         }
-        
+
         /* Remove headers/footers */
         header, footer {
             display: none !important;
         }
-        
+
         /* Ensure text wrapping for all text elements */
         p, div, span {
             word-wrap: break-word !important;
             overflow-wrap: break-word !important;
         }
-        
+
         /* Table of contents - avoid breaking */
         .table-of-contents {
             page-break-inside: avoid;
         }
-        
+
         /* Back to top links - avoid breaking */
         .back-to-top {
             page-break-inside: avoid;
         }
     """
-    
+
     # Create HTML object
     html_doc = WeasyHTML(string=html_content, base_url=str(html_file.parent))
-    
+
     # Create CSS object
     css_doc = WeasyCSS(string=pdf_css)
-    
+
     # Generate PDF
     font_config = FontConfiguration()
     html_doc.write_pdf(
-        pdf_file,
-        stylesheets=[css_doc],
-        font_config=font_config,
-        optimize_size=('fonts', 'images')
+        pdf_file, stylesheets=[css_doc], font_config=font_config, optimize_size=("fonts", "images")
     )
-    
+
     return pdf_file
+
+
 app = typer.Typer(
     name="md_to_html",
     help="Convert markdown files to HTML with Liatrio dark theme styling.",
@@ -1088,7 +1097,7 @@ def main(
         ),
     ],
     output_file: Annotated[
-        Optional[Path],
+        Path | None,
         typer.Option(
             "--output",
             "-o",
@@ -1133,7 +1142,7 @@ def main(
         # Show status while converting
         with console.status("[bold cyan]Converting markdown to HTML...", spinner="dots"):
             output_path = convert_markdown_to_html(input_file, output_file)
-        
+
         # Success message with Rich formatting
         success_text = Text()
         success_text.append("✅ ", style="bold green")
@@ -1141,9 +1150,9 @@ def main(
         success_text.append(str(input_file), style="cyan")
         success_text.append(" → ", style="dim")
         success_text.append(str(output_path), style="bold cyan")
-        
+
         console.print(success_text)
-        
+
         # Show file size if output file exists
         if output_path.exists():
             size = output_path.stat().st_size
@@ -1153,25 +1162,28 @@ def main(
                 size_str = f"{size / 1024:.0f} KB"
             else:
                 size_str = f"{size} B"
-            
+
             console.print(f"[dim]Output size: {size_str}[/]")
-        
+
         # Generate PDF if requested
         if pdf:
             if not weasyprint_available:
-                console.print("[bold yellow]Warning:[/] WeasyPrint not available. Skipping PDF generation.", style="yellow")
+                console.print(
+                    "[bold yellow]Warning:[/] WeasyPrint not available. Skipping PDF generation.",
+                    style="yellow",
+                )
                 console.print("[dim]Install with: uv add --script md_to_html.py weasyprint[/]")
             else:
-                pdf_output = output_path.with_suffix('.pdf')
+                pdf_output = output_path.with_suffix(".pdf")
                 with console.status("[bold cyan]Generating PDF...", spinner="dots"):
                     pdf_path = convert_html_to_pdf(output_path, pdf_output)
-                
+
                 pdf_success_text = Text()
                 pdf_success_text.append("✅ ", style="bold green")
                 pdf_success_text.append("PDF generated: ", style="green")
                 pdf_success_text.append(str(pdf_path), style="bold cyan")
                 console.print(pdf_success_text)
-                
+
                 if pdf_path.exists():
                     pdf_size = pdf_path.stat().st_size
                     if pdf_size >= 1024 * 1024:
@@ -1180,9 +1192,9 @@ def main(
                         pdf_size_str = f"{pdf_size / 1024:.0f} KB"
                     else:
                         pdf_size_str = f"{pdf_size} B"
-                    
+
                     console.print(f"[dim]PDF size: {pdf_size_str}[/]")
-        
+
     except FileNotFoundError as e:
         error_text = Text()
         error_text.append("❌ ", style="bold red")
@@ -1201,4 +1213,3 @@ def main(
 
 if __name__ == "__main__":
     app()
-
