@@ -1,0 +1,3602 @@
+{
+  "requesterUsername": "ryderstorm",
+  "requesterAvatarIconUri": {
+    "$mid": 1,
+    "path": "/u/3799823",
+    "scheme": "https",
+    "authority": "avatars.githubusercontent.com",
+    "query": "v=4"
+  },
+  "responderUsername": "GitHub Copilot",
+  "responderAvatarIconUri": {
+    "id": "copilot"
+  },
+  "initialLocation": "panel",
+  "requests": [
+    {
+      "requestId": "request_3f884e5d-ebf5-474e-a4c0-84c05a5f7e37",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 27
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 28
+            },
+            "text": "tell me about this codebase",
+            "kind": "text"
+          }
+        ],
+        "text": "tell me about this codebase"
+      },
+      "variableData": {
+        "variables": []
+      },
+      "response": [
+        {
+          "kind": "confirmation",
+          "title": "Permission Request",
+          "message": {
+            "value": "To get more relevant Chat results, we need permission to read the contents of your repository on GitHub.",
+            "uris": {}
+          },
+          "data": {
+            "authPermissionPrompted": true,
+            "id": "request_3f884e5d-ebf5-474e-a4c0-84c05a5f7e37",
+            "prompt": "tell me about this codebase",
+            "attempt": 0,
+            "enableCommandDetection": true,
+            "isParticipantDetected": true,
+            "sessionId": "499ecaa1-56a2-452e-8d7d-995a2874669d",
+            "references": [],
+            "toolReferences": [],
+            "location": 1,
+            "toolInvocationToken": {
+              "sessionId": "499ecaa1-56a2-452e-8d7d-995a2874669d"
+            },
+            "tools": {},
+            "model": {
+              "id": "gpt-5-mini",
+              "vendor": "copilot",
+              "family": "gpt-5-mini",
+              "version": "gpt-5-mini",
+              "name": "GPT-5 mini",
+              "capabilities": {
+                "supportsImageToText": true,
+                "supportsToolCalling": true
+              },
+              "maxInputTokens": 127805
+            }
+          },
+          "buttons": [
+            "Grant",
+            "Not Now",
+            "Never Ask Again"
+          ],
+          "isUsed": true
+        }
+      ],
+      "responseId": "response_16e04e7b-67ad-410f-ada7-eaf2a7f40c71",
+      "result": {
+        "timings": {
+          "totalElapsed": 147
+        },
+        "metadata": {
+          "modelMessageId": "",
+          "responseId": "e1cd6789-5630-489e-8fbd-3f0592c7f0c8",
+          "sessionId": "4846fb94-6e2f-4ac0-af18-5dab3872e47c",
+          "agentId": "github.copilot.workspace"
+        }
+      },
+      "followups": [],
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "extensionVersion": "0.32.5",
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.workspace",
+        "description": "Ask about your workspace",
+        "when": "!github.copilot.interactiveSession.disabled",
+        "metadata": {
+          "sampleRequest": "How do I build this project?",
+          "themeIcon": {
+            "id": "code"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "workspace",
+        "fullName": "Workspace",
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent",
+          "ask",
+          "edit"
+        ],
+        "slashCommands": [
+          {
+            "name": "explain",
+            "description": "Explain how the code in your active editor works"
+          },
+          {
+            "name": "tests",
+            "description": "Generate unit tests for the selected code",
+            "disambiguation": [
+              {
+                "category": "create_tests",
+                "description": "The user wants to generate unit tests.",
+                "examples": [
+                  "Generate tests for my selection using pytest."
+                ]
+              }
+            ]
+          },
+          {
+            "name": "fix",
+            "description": "Propose a fix for the problems in the selected code",
+            "sampleRequest": "There is a problem in this code. Rewrite the code to show it with the bug fixed."
+          },
+          {
+            "name": "new",
+            "description": "Scaffold code for a new file or project in a workspace",
+            "sampleRequest": "Create a RESTful API server using typescript",
+            "isSticky": true,
+            "disambiguation": [
+              {
+                "category": "create_new_workspace_or_extension",
+                "description": "The user wants to create a complete Visual Studio Code workspace from scratch, such as a new application or a Visual Studio Code extension. Use this category only if the question relates to generating or creating new workspaces in Visual Studio Code. Do not use this category for updating existing code or generating sample code snippets",
+                "examples": [
+                  "Scaffold a Node server.",
+                  "Create a sample project which uses the fileSystemProvider API.",
+                  "react application"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "newNotebook",
+            "description": "Create a new Jupyter Notebook",
+            "sampleRequest": "How do I create a notebook to load data from a csv file?",
+            "disambiguation": [
+              {
+                "category": "create_jupyter_notebook",
+                "description": "The user wants to create a new Jupyter notebook in Visual Studio Code.",
+                "examples": [
+                  "Create a notebook to analyze this CSV file."
+                ]
+              }
+            ]
+          },
+          {
+            "name": "setupTests",
+            "description": "Set up tests in your project (Experimental)",
+            "sampleRequest": "add playwright tests to my project",
+            "when": "config.github.copilot.chat.setupTests.enabled",
+            "disambiguation": [
+              {
+                "category": "set_up_tests",
+                "description": "The user wants to configure project test setup, framework, or test runner. The user does not want to fix their existing tests.",
+                "examples": [
+                  "Set up tests for this project."
+                ]
+              }
+            ]
+          }
+        ],
+        "disambiguation": [
+          {
+            "category": "workspace_project_questions",
+            "description": "The user wants to learn about or update the code or files in their current workspace. Questions in this category may be about understanding what the whole workspace does or locating the implementation of some code. This does not include generating or updating tests.",
+            "examples": [
+              "What does this project do?"
+            ]
+          },
+          {
+            "category": "find_code_in_workspace",
+            "description": "The user wants to locate the implementation of some functionality in their current workspace.",
+            "examples": [
+              "Where is the tree widget implemented?"
+            ]
+          },
+          {
+            "category": "generate_with_workspace_context",
+            "description": "The user wants to generate code based on multiple files in the workspace and did not specify which files to reference.",
+            "examples": [
+              "Create a README for this project."
+            ]
+          }
+        ]
+      },
+      "contentReferences": [],
+      "codeCitations": [],
+      "timestamp": 1762969140060,
+      "modelId": "copilot/gpt-5-mini"
+    },
+    {
+      "requestId": "request_67e91cd3-220d-4a7d-b476-573cc9a01699",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 10
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 11
+            },
+            "agent": {
+              "extensionId": {
+                "value": "GitHub.copilot-chat",
+                "_lower": "github.copilot-chat"
+              },
+              "extensionVersion": "0.32.5",
+              "publisherDisplayName": "GitHub",
+              "extensionPublisherId": "GitHub",
+              "extensionDisplayName": "GitHub Copilot Chat",
+              "id": "github.copilot.workspace",
+              "description": "Ask about your workspace",
+              "when": "!github.copilot.interactiveSession.disabled",
+              "metadata": {
+                "sampleRequest": "How do I build this project?",
+                "themeIcon": {
+                  "id": "code"
+                },
+                "hasFollowups": false,
+                "supportIssueReporting": false
+              },
+              "name": "workspace",
+              "fullName": "Workspace",
+              "locations": [
+                "panel"
+              ],
+              "modes": [
+                "agent",
+                "ask",
+                "edit"
+              ],
+              "slashCommands": [
+                {
+                  "name": "explain",
+                  "description": "Explain how the code in your active editor works"
+                },
+                {
+                  "name": "tests",
+                  "description": "Generate unit tests for the selected code",
+                  "disambiguation": [
+                    {
+                      "category": "create_tests",
+                      "description": "The user wants to generate unit tests.",
+                      "examples": [
+                        "Generate tests for my selection using pytest."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "fix",
+                  "description": "Propose a fix for the problems in the selected code",
+                  "sampleRequest": "There is a problem in this code. Rewrite the code to show it with the bug fixed."
+                },
+                {
+                  "name": "new",
+                  "description": "Scaffold code for a new file or project in a workspace",
+                  "sampleRequest": "Create a RESTful API server using typescript",
+                  "isSticky": true,
+                  "disambiguation": [
+                    {
+                      "category": "create_new_workspace_or_extension",
+                      "description": "The user wants to create a complete Visual Studio Code workspace from scratch, such as a new application or a Visual Studio Code extension. Use this category only if the question relates to generating or creating new workspaces in Visual Studio Code. Do not use this category for updating existing code or generating sample code snippets",
+                      "examples": [
+                        "Scaffold a Node server.",
+                        "Create a sample project which uses the fileSystemProvider API.",
+                        "react application"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "newNotebook",
+                  "description": "Create a new Jupyter Notebook",
+                  "sampleRequest": "How do I create a notebook to load data from a csv file?",
+                  "disambiguation": [
+                    {
+                      "category": "create_jupyter_notebook",
+                      "description": "The user wants to create a new Jupyter notebook in Visual Studio Code.",
+                      "examples": [
+                        "Create a notebook to analyze this CSV file."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "setupTests",
+                  "description": "Set up tests in your project (Experimental)",
+                  "sampleRequest": "add playwright tests to my project",
+                  "when": "config.github.copilot.chat.setupTests.enabled",
+                  "disambiguation": [
+                    {
+                      "category": "set_up_tests",
+                      "description": "The user wants to configure project test setup, framework, or test runner. The user does not want to fix their existing tests.",
+                      "examples": [
+                        "Set up tests for this project."
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "disambiguation": [
+                {
+                  "category": "workspace_project_questions",
+                  "description": "The user wants to learn about or update the code or files in their current workspace. Questions in this category may be about understanding what the whole workspace does or locating the implementation of some code. This does not include generating or updating tests.",
+                  "examples": [
+                    "What does this project do?"
+                  ]
+                },
+                {
+                  "category": "find_code_in_workspace",
+                  "description": "The user wants to locate the implementation of some functionality in their current workspace.",
+                  "examples": [
+                    "Where is the tree widget implemented?"
+                  ]
+                },
+                {
+                  "category": "generate_with_workspace_context",
+                  "description": "The user wants to generate code based on multiple files in the workspace and did not specify which files to reference.",
+                  "examples": [
+                    "Create a README for this project."
+                  ]
+                }
+              ]
+            },
+            "kind": "agent"
+          },
+          {
+            "range": {
+              "start": 10,
+              "endExclusive": 38
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 11,
+              "endLineNumber": 1,
+              "endColumn": 39
+            },
+            "text": " Grant: \"Permission Request\"",
+            "kind": "text"
+          }
+        ],
+        "text": "@workspace Grant: \"Permission Request\""
+      },
+      "variableData": {
+        "variables": []
+      },
+      "response": [
+        {
+          "kind": "progressTaskSerialized",
+          "content": {
+            "value": "Collecting workspace information",
+            "uris": {}
+          },
+          "progress": []
+        },
+        {
+          "value": "High-level summary\n- Small Python project that provides a CLI generator and an MCP server to create \"slash\" command definitions for various AI assistants. See ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " for overview and quick start.\n\nKey packages & entry points\n- CLI app: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.cli.app",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "70d2fad5-4f46-45fa-bf02-5f19d3edd322"
+        },
+        {
+          "value": " — CLI implemented with Typer (slash_commands/cli.py).\n- Writer/orchestration: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.writer.SlashCommandWriter",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "a39c2b2d-37b5-46f0-87ed-fc22d4de8a64"
+        },
+        {
+          "value": " — loads prompts and writes agent-specific command files (slash_commands/writer.py).\n- Agent configuration: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.config.AgentConfig",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "0400b431-49d0-46d4-9502-4689b92cfcf2"
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.config.get_agent_config",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "aaaf1d0b-5ca8-4e8e-a54a-28d217aa56e9"
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.config.list_agent_keys",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "6d06b84c-54a2-4291-9559-2894c925b9eb"
+        },
+        {
+          "value": " (slash_commands/config.py).\n- Auto-detection: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.detection.detect_agents",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/detection.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/detection.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/detection.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "ffcb620d-476a-4c54-a3c7-08ef68897fb7"
+        },
+        {
+          "value": " — detects installed agents by scanning configured directories (slash_commands/detection.py).\n- Generators: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.generators.MarkdownCommandGenerator",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "8b7b95c8-f2ef-4bf7-9af4-00ae51eb4ac3"
+        },
+        {
+          "value": " and ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "slash_commands.generators.TomlCommandGenerator",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "7a4df95c-f790-4f12-959d-a87be550abd6"
+        },
+        {
+          "value": " — produce Markdown and TOML command outputs (slash_commands/generators.py).\n- MCP utilities: e.g. ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "name": "mcp_server.prompt_utils.parse_frontmatter",
+            "kind": 12,
+            "containerName": "",
+            "location": {
+              "range": {
+                "startLineNumber": 1,
+                "startColumn": 1,
+                "endLineNumber": 1,
+                "endColumn": 1
+              },
+              "uri": {
+                "$mid": 1,
+                "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+                "external": "file:///home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+                "scheme": "file"
+              }
+            }
+          },
+          "resolveId": "2de94500-704f-495a-9ade-771adc6a5012"
+        },
+        {
+          "value": " — prompt parsing and MCP helpers (mcp_server/prompt_utils.py).\n- Server entry point: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ".\n\nTesting & fixtures\n- Tests live under ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " with key files: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_cli.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/test_cli.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_cli.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/conftest.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/conftest.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/conftest.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ". Docs claim a full test suite with ~79 passing tests and ~85% coverage (see docs/artifacts).\n\nPackaging, build & release\n- Project metadata and release config live in ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/pyproject.toml",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/pyproject.toml",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/pyproject.toml",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ". Semantic-release config is included under [tool.semantic_release] (refer to docs artifact: docs/artifacts/comprehensive-issue-resolution/task-1-semantic-release-config.md).\n- Build system: Hatchling-based configuration (see build notes: docs/artifacts/0002/task-2.0/build-system.txt).\n- Release workflow and GitHub auth artifacts: automated semantic-release workflow example (docs/artifacts/0002/task-1.0/release-workflow.txt) and Chainguard STS config (docs/artifacts/0002/task-1.0/chainguard-config.txt).\n\nDev tooling & CI\n- Pre-commit and ruff configured; debugging shows pre-commit run output in artifacts (docs/artifacts/0001/task-4.0/task-4.0-pre-commit-run.txt).\n- Dockerfile for containerized builds uses uv and ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/uv.lock",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/uv.lock",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/uv.lock",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " (Dockerfile).\n- README contains common dev commands (tests, coverage, build): ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ".\n\nDocumentation & artifacts\n- User and developer docs: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/operations.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/operations.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/operations.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/CONTRIBUTING.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/CONTRIBUTING.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/CONTRIBUTING.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ".\n- Proof artifacts and task traces are under ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " (examples: semantic-release task ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", comprehensive completion summary docs/artifacts/comprehensive-issue-resolution/COMPLETION-SUMMARY.md).\n\nLicense & metadata\n- Apache-2.0 license present: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ".\n- Release notes & changelog: ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ", ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/CHANGELOG.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/CHANGELOG.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/CHANGELOG.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": ".\n\nQuick commands (from README)\n- Run tests: uv run pytest — see ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "\n- Build: uv run python -m build — see ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "\n- Run server: python ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " — see ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " and ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "\n\nIf you want, I can:\n- point to the code paths for a specific feature (generation, detection, writing, MCP API), or\n- open and summarize a particular file in detail (e.g., ",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": " or slash_commands/cli.py).",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          },
+          "uris": {}
+        }
+      ],
+      "responseId": "response_557e6f31-1395-4912-8c27-2d231bd4074a",
+      "result": {
+        "timings": {
+          "firstProgress": 36573,
+          "totalElapsed": 51344
+        },
+        "metadata": {
+          "codeBlocks": [],
+          "toolCallRounds": [
+            {
+              "response": "High-level summary\n- Small Python project that provides a CLI generator and an MCP server to create \"slash\" command definitions for various AI assistants. See [README.md](README.md) for overview and quick start.\n\nKey packages & entry points\n- CLI app: [`slash_commands.cli.app`](slash_commands/cli.py) — CLI implemented with Typer ([slash_commands/cli.py](slash_commands/cli.py)).\n- Writer/orchestration: [`slash_commands.writer.SlashCommandWriter`](slash_commands/writer.py) — loads prompts and writes agent-specific command files ([slash_commands/writer.py](slash_commands/writer.py)).\n- Agent configuration: [`slash_commands.config.AgentConfig`](slash_commands/config.py), [`slash_commands.config.get_agent_config`](slash_commands/config.py), [`slash_commands.config.list_agent_keys`](slash_commands/config.py) ([slash_commands/config.py](slash_commands/config.py)).\n- Auto-detection: [`slash_commands.detection.detect_agents`](slash_commands/detection.py) — detects installed agents by scanning configured directories ([slash_commands/detection.py](slash_commands/detection.py)).\n- Generators: [`slash_commands.generators.MarkdownCommandGenerator`](slash_commands/generators.py) and [`slash_commands.generators.TomlCommandGenerator`](slash_commands/generators.py) — produce Markdown and TOML command outputs ([slash_commands/generators.py](slash_commands/generators.py)).\n- MCP utilities: e.g. [`mcp_server.prompt_utils.parse_frontmatter`](mcp_server/prompt_utils.py) — prompt parsing and MCP helpers ([mcp_server/prompt_utils.py](mcp_server/prompt_utils.py)).\n- Server entry point: [server.py](server.py).\n\nTesting & fixtures\n- Tests live under [tests/](tests/) with key files: [tests/test_cli.py](tests/test_cli.py), [tests/test_generators.py](tests/test_generators.py), [tests/conftest.py](tests/conftest.py). Docs claim a full test suite with ~79 passing tests and ~85% coverage (see docs/artifacts).\n\nPackaging, build & release\n- Project metadata and release config live in [pyproject.toml](pyproject.toml). Semantic-release config is included under [tool.semantic_release] (refer to docs artifact: [docs/artifacts/comprehensive-issue-resolution/task-1-semantic-release-config.md](docs/artifacts/comprehensive-issue-resolution/task-1-semantic-release-config.md)).\n- Build system: Hatchling-based configuration (see build notes: [docs/artifacts/0002/task-2.0/build-system.txt](docs/artifacts/0002/task-2.0/build-system.txt)).\n- Release workflow and GitHub auth artifacts: automated semantic-release workflow example ([docs/artifacts/0002/task-1.0/release-workflow.txt](docs/artifacts/0002/task-1.0/release-workflow.txt)) and Chainguard STS config ([docs/artifacts/0002/task-1.0/chainguard-config.txt](docs/artifacts/0002/task-1.0/chainguard-config.txt)).\n\nDev tooling & CI\n- Pre-commit and ruff configured; debugging shows pre-commit run output in artifacts ([docs/artifacts/0001/task-4.0/task-4.0-pre-commit-run.txt](docs/artifacts/0001/task-4.0/task-4.0-pre-commit-run.txt)).\n- Dockerfile for containerized builds uses uv and uv.lock ([Dockerfile](Dockerfile)).\n- README contains common dev commands (tests, coverage, build): [README.md](README.md).\n\nDocumentation & artifacts\n- User and developer docs: [docs/slash-command-generator.md](docs/slash-command-generator.md), [docs/operations.md](docs/operations.md), [CONTRIBUTING.md](CONTRIBUTING.md).\n- Proof artifacts and task traces are under [docs/artifacts/](docs/artifacts/) (examples: semantic-release task [docs/artifacts/0002/task-1.0/README.md](docs/artifacts/0002/task-1.0/README.md), comprehensive completion summary [docs/artifacts/comprehensive-issue-resolution/COMPLETION-SUMMARY.md](docs/artifacts/comprehensive-issue-resolution/COMPLETION-SUMMARY.md)).\n\nLicense & metadata\n- Apache-2.0 license present: [LICENSE](LICENSE).\n- Release notes & changelog: [RELEASE_NOTES_v1.0.0.md](RELEASE_NOTES_v1.0.0.md), [CHANGELOG.md](CHANGELOG.md).\n\nQuick commands (from README)\n- Run tests: uv run pytest — see [README.md](README.md)\n- Build: uv run python -m build — see [README.md](README.md)\n- Run server: python server.py — see [README.md](README.md) and [server.py](server.py)\n\nIf you want, I can:\n- point to the code paths for a specific feature (generation, detection, writing, MCP API), or\n- open and summarize a particular file in detail (e.g., [slash_commands/writer.py](slash_commands/writer.py) or [slash_commands/cli.py](slash_commands/cli.py)).",
+              "toolCalls": [],
+              "toolInputRetry": 0,
+              "id": "0f4b1934-83ab-4efa-b667-e2259e9c3f9d"
+            }
+          ],
+          "modelMessageId": "56f00485-6ace-4b18-8ca3-8d4acfe4c06a",
+          "responseId": "086dbbc4-af95-473f-b3e7-b3567bc1c389",
+          "sessionId": "4846fb94-6e2f-4ac0-af18-5dab3872e47c",
+          "agentId": "github.copilot.workspace"
+        },
+        "details": "GPT-5 mini • 1x"
+      },
+      "responseMarkdownInfo": [],
+      "followups": [],
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "extensionVersion": "0.32.5",
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.workspace",
+        "description": "Ask about your workspace",
+        "when": "!github.copilot.interactiveSession.disabled",
+        "metadata": {
+          "sampleRequest": "How do I build this project?",
+          "themeIcon": {
+            "id": "code"
+          },
+          "hasFollowups": false,
+          "supportIssueReporting": false
+        },
+        "name": "workspace",
+        "fullName": "Workspace",
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "agent",
+          "ask",
+          "edit"
+        ],
+        "slashCommands": [
+          {
+            "name": "explain",
+            "description": "Explain how the code in your active editor works"
+          },
+          {
+            "name": "tests",
+            "description": "Generate unit tests for the selected code",
+            "disambiguation": [
+              {
+                "category": "create_tests",
+                "description": "The user wants to generate unit tests.",
+                "examples": [
+                  "Generate tests for my selection using pytest."
+                ]
+              }
+            ]
+          },
+          {
+            "name": "fix",
+            "description": "Propose a fix for the problems in the selected code",
+            "sampleRequest": "There is a problem in this code. Rewrite the code to show it with the bug fixed."
+          },
+          {
+            "name": "new",
+            "description": "Scaffold code for a new file or project in a workspace",
+            "sampleRequest": "Create a RESTful API server using typescript",
+            "isSticky": true,
+            "disambiguation": [
+              {
+                "category": "create_new_workspace_or_extension",
+                "description": "The user wants to create a complete Visual Studio Code workspace from scratch, such as a new application or a Visual Studio Code extension. Use this category only if the question relates to generating or creating new workspaces in Visual Studio Code. Do not use this category for updating existing code or generating sample code snippets",
+                "examples": [
+                  "Scaffold a Node server.",
+                  "Create a sample project which uses the fileSystemProvider API.",
+                  "react application"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "newNotebook",
+            "description": "Create a new Jupyter Notebook",
+            "sampleRequest": "How do I create a notebook to load data from a csv file?",
+            "disambiguation": [
+              {
+                "category": "create_jupyter_notebook",
+                "description": "The user wants to create a new Jupyter notebook in Visual Studio Code.",
+                "examples": [
+                  "Create a notebook to analyze this CSV file."
+                ]
+              }
+            ]
+          },
+          {
+            "name": "setupTests",
+            "description": "Set up tests in your project (Experimental)",
+            "sampleRequest": "add playwright tests to my project",
+            "when": "config.github.copilot.chat.setupTests.enabled",
+            "disambiguation": [
+              {
+                "category": "set_up_tests",
+                "description": "The user wants to configure project test setup, framework, or test runner. The user does not want to fix their existing tests.",
+                "examples": [
+                  "Set up tests for this project."
+                ]
+              }
+            ]
+          }
+        ],
+        "disambiguation": [
+          {
+            "category": "workspace_project_questions",
+            "description": "The user wants to learn about or update the code or files in their current workspace. Questions in this category may be about understanding what the whole workspace does or locating the implementation of some code. This does not include generating or updating tests.",
+            "examples": [
+              "What does this project do?"
+            ]
+          },
+          {
+            "category": "find_code_in_workspace",
+            "description": "The user wants to locate the implementation of some functionality in their current workspace.",
+            "examples": [
+              "Where is the tree widget implemented?"
+            ]
+          },
+          {
+            "category": "generate_with_workspace_context",
+            "description": "The user wants to generate code based on multiple files in the workspace and did not specify which files to reference.",
+            "examples": [
+              "Create a README for this project."
+            ]
+          }
+        ]
+      },
+      "contentReferences": [
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/CHANGELOG.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/CHANGELOG.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/CHANGELOG.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 39,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/CONTRIBUTING.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/CONTRIBUTING.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/CONTRIBUTING.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 87,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/Dockerfile",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/Dockerfile",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/Dockerfile",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 26,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 29,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-directory-structure.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-directory-structure.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-directory-structure.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 22,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-pyproject.toml.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-pyproject.toml.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-pyproject.toml.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 25,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-pyproject.toml.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-pyproject.toml.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-1.0/task-1.0-pyproject.toml.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 59,
+              "startColumn": 1,
+              "endLineNumber": 89,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-2.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-2.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-2.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 25,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-2.0/task-2.0-directory-structure.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-2.0/task-2.0-directory-structure.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-2.0/task-2.0-directory-structure.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 7,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-4.0/task-4.0-pre-commit-run.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-4.0/task-4.0-pre-commit-run.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-4.0/task-4.0-pre-commit-run.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 12,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 5,
+              "startColumn": 1,
+              "endLineNumber": 57,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-git-commit-diff.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-git-commit-diff.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-git-commit-diff.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 31,
+              "startColumn": 1,
+              "endLineNumber": 58,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-git-commit-stat.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-git-commit-stat.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-git-commit-stat.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 58,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-prompts-retained.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-prompts-retained.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-prompts-retained.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 6,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-pyproject-toml-updated.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-pyproject-toml-updated.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-pyproject-toml-updated.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 29,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-pyproject-toml-updated.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-pyproject-toml-updated.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0001/task-5.0/task-5.0-pyproject-toml-updated.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 59,
+              "startColumn": 1,
+              "endLineNumber": 84,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/chainguard-config.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/chainguard-config.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/chainguard-config.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 9,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 7,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 9,
+              "startColumn": 1,
+              "endLineNumber": 37,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 44,
+              "startColumn": 1,
+              "endLineNumber": 49,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/release-workflow.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/release-workflow.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/release-workflow.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 35,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/semantic-release-help.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/semantic-release-help.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-1.0/semantic-release-help.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 25,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/build-system.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/build-system.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/build-system.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 27,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/console-scripts.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/console-scripts.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/console-scripts.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 23,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/wheel-contents.txt",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/wheel-contents.txt",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-2.0/wheel-contents.txt",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 27,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-3.0/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-3.0/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/0002/task-3.0/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 53,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/COMPLETION-SUMMARY.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/COMPLETION-SUMMARY.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/COMPLETION-SUMMARY.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 46,
+              "startColumn": 1,
+              "endLineNumber": 69,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-1-semantic-release-config.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-1-semantic-release-config.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-1-semantic-release-config.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 101,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-4-documentation-compliance.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-4-documentation-compliance.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-4-documentation-compliance.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 129,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 11,
+              "startColumn": 1,
+              "endLineNumber": 28,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 35,
+              "startColumn": 1,
+              "endLineNumber": 47,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/comprehensive-issue-resolution/task-5-repository-cleanup-finalization.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 130,
+              "startColumn": 1,
+              "endLineNumber": 153,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/artifacts/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 32,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/GITHUB_METADATA_CHECKLIST.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/GITHUB_METADATA_CHECKLIST.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/GITHUB_METADATA_CHECKLIST.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 5,
+              "startColumn": 1,
+              "endLineNumber": 40,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/operations.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/operations.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/operations.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 63,
+              "startColumn": 1,
+              "endLineNumber": 84,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 68,
+              "startColumn": 1,
+              "endLineNumber": 108,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/docs/slash-command-generator.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 426,
+              "startColumn": 1,
+              "endLineNumber": 459,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 48,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/LICENSE",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 161,
+              "startColumn": 1,
+              "endLineNumber": 186,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 5,
+              "startColumn": 1,
+              "endLineNumber": 16,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 77,
+              "startColumn": 1,
+              "endLineNumber": 134,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 191,
+              "startColumn": 1,
+              "endLineNumber": 214,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/README.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 218,
+              "startColumn": 1,
+              "endLineNumber": 238,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 5,
+              "startColumn": 1,
+              "endLineNumber": 28,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/RELEASE_NOTES_v1.0.0.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 61,
+              "startColumn": 1,
+              "endLineNumber": 89,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/__init__.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/__init__.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/__init__.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 20,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 51,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 87,
+              "startColumn": 1,
+              "endLineNumber": 127,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 274,
+              "startColumn": 1,
+              "endLineNumber": 294,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/config.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 10,
+              "startColumn": 1,
+              "endLineNumber": 109,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/detection.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/detection.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/detection.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 49,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 221,
+              "startColumn": 1,
+              "endLineNumber": 259,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 110,
+              "startColumn": 1,
+              "endLineNumber": 249,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 274,
+              "startColumn": 1,
+              "endLineNumber": 474,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0001-spec-slash-command-manager-extraction.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/0001-spec-slash-command-manager-extraction.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0001-spec-slash-command-manager-extraction.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 354,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 18,
+              "startColumn": 1,
+              "endLineNumber": 42,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 109,
+              "startColumn": 1,
+              "endLineNumber": 116,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 143,
+              "startColumn": 1,
+              "endLineNumber": 166,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/0002-spec-comprehensive-issue-resolution.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 302,
+              "startColumn": 1,
+              "endLineNumber": 305,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 3,
+              "startColumn": 1,
+              "endLineNumber": 83,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 109,
+              "startColumn": 1,
+              "endLineNumber": 116,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0001-spec-slash-command-manager-extraction.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 122,
+              "startColumn": 1,
+              "endLineNumber": 134,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0002-spec-comprehensive-issue-resolution.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0002-spec-comprehensive-issue-resolution.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0002-spec-comprehensive-issue-resolution.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 29,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0002-spec-comprehensive-issue-resolution.md",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0002-spec-comprehensive-issue-resolution.md",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tasks/tasks-0002-spec-comprehensive-issue-resolution.md",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 40,
+              "startColumn": 1,
+              "endLineNumber": 59,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/conftest.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/conftest.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/conftest.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 29,
+              "startColumn": 1,
+              "endLineNumber": 90,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_cli.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/test_cli.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_cli.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 144,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_config.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/test_config.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_config.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 33,
+              "startColumn": 1,
+              "endLineNumber": 60,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "uri": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+              "scheme": "file"
+            },
+            "range": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 174,
+              "endColumn": 1
+            }
+          },
+          "options": {
+            "isFromTool": false
+          }
+        }
+      ],
+      "codeCitations": [],
+      "timestamp": 1762969151026,
+      "confirmation": "Grant",
+      "modelId": "copilot/gpt-5-mini"
+    },
+    {
+      "requestId": "request_fc502d25-27c1-4b4d-a7fc-b29d652a0591",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 40
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 41
+            },
+            "text": "Show me some code examples from the repo",
+            "kind": "text"
+          }
+        ],
+        "text": "Show me some code examples from the repo"
+      },
+      "variableData": {
+        "variables": [
+          {
+            "kind": "file",
+            "id": "vscode.implicit.file",
+            "name": "file:chat.json",
+            "value": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "scheme": "file"
+            },
+            "modelDescription": "User's active file"
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "Here are a few brief code excerpts from key files in the repo.\n\n````python\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "# ...existing code...\nimport typer\nfrom slash_commands.writer import SlashCommandWriter\n\napp = typer.Typer(help=\"Slash command generator CLI\")\n\n@app.command()\ndef generate(path: str = \".\", agent: str | None = None):\n    \"\"\"\n    Generate slash command files for detected or specified agent.\n    \"\"\"\n    writer = SlashCommandWriter(path)\n    writer.write(agent=agent)\n# ...existing code...\n````\n\n````python\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "# ...existing code...\nclass SlashCommandWriter:\n    def __init__(self, prompts_dir: str):\n        self.prompts_dir = prompts_dir\n\n    def load_prompts(self) -> list[dict]:\n        # load YAML/MD prompts from self.prompts_dir\n        ...\n\n    def write(self, agent: str | None = None):\n        prompts = self.load_prompts()\n        # choose generator(s) and output files per agent config\n        ...\n# ...existing code...\n````\n\n````python\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "# ...existing code...\nclass MarkdownCommandGenerator:\n    def generate(self, prompt: dict) -> str:\n        \"\"\"Return a Markdown representation for a prompt\"\"\"\n        title = prompt.get(\"title\", \"\")\n        description = prompt.get(\"description\", \"\")\n        return f\"# {title}\\n\\n{description}\\n\"\n\nclass TomlCommandGenerator:\n    def generate(self, prompt: dict) -> str:\n        \"\"\"Return TOML manifest for an agent command\"\"\"\n        name = prompt.get(\"name\", \"unnamed\")\n        return f'title = \"{name}\"\\nscript = \"\"\"{prompt.get(\"body\",\"\")}\"\"\"\\n'\n# ...existing code...\n````\n\n````python\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "# ...existing code...\ndef parse_frontmatter(text: str) -> tuple[dict, str]:\n    \"\"\"\n    Parse YAML frontmatter from a Markdown prompt and return (meta, body).\n    \"\"\"\n    if text.startswith(\"---\"):\n        # split frontmatter and body\n        parts = text.split(\"---\", 2)\n        meta = yaml.safe_load(parts[1])\n        body = parts[2].lstrip(\"\\n\")\n        return meta, body\n    return {}, text\n# ...existing code...\n````\n\n````python\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "# ...existing code...\nfrom fastapi import FastAPI\nfrom mcp_server import handlers\n\napp = FastAPI()\n\n@app.post(\"/mcp/prompt\")\nasync def handle_prompt(payload: dict):\n    # validate + route to MCP handlers that produce agent command manifests\n    return await handlers.process_prompt(payload)\n\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)\n# ...existing code...\n````\n\n````python\n",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "codeblockUri",
+          "uri": {
+            "$mid": 1,
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+            "scheme": "file"
+          }
+        },
+        {
+          "value": "# ...existing code...\ndef test_markdown_generator_basic():\n    gen = MarkdownCommandGenerator()\n    prompt = {\"title\": \"Hello\", \"description\": \"Say hi\"}\n    out = gen.generate(prompt)\n    assert \"# Hello\" in out\n    assert \"Say hi\" in out\n# ...existing code...\n````\n\nWant me to open any of these files fully or show other examples (detection, config, or more tests)?",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        }
+      ],
+      "responseId": "response_a3c3b0b2-1e83-46ee-98db-ddcf7e62bd71",
+      "result": {
+        "timings": {
+          "firstProgress": 11536,
+          "totalElapsed": 21449
+        },
+        "metadata": {
+          "codeBlocks": [
+            {
+              "code": "# ...existing code...\nimport typer\nfrom slash_commands.writer import SlashCommandWriter\n\napp = typer.Typer(help=\"Slash command generator CLI\")\n\n@app.command()\ndef generate(path: str = \".\", agent: str | None = None):\n    \"\"\"\n    Generate slash command files for detected or specified agent.\n    \"\"\"\n    writer = SlashCommandWriter(path)\n    writer.write(agent=agent)\n# ...existing code...\n",
+              "resource": {
+                "$mid": 1,
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py",
+                "scheme": "file"
+              },
+              "language": "python",
+              "markdownBeforeBlock": "Here are a few brief code excerpts from key files in the repo.\n\n"
+            },
+            {
+              "code": "# ...existing code...\nclass SlashCommandWriter:\n    def __init__(self, prompts_dir: str):\n        self.prompts_dir = prompts_dir\n\n    def load_prompts(self) -> list[dict]:\n        # load YAML/MD prompts from self.prompts_dir\n        ...\n\n    def write(self, agent: str | None = None):\n        prompts = self.load_prompts()\n        # choose generator(s) and output files per agent config\n        ...\n# ...existing code...\n",
+              "resource": {
+                "$mid": 1,
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py",
+                "scheme": "file"
+              },
+              "language": "python",
+              "markdownBeforeBlock": "\n"
+            },
+            {
+              "code": "# ...existing code...\nclass MarkdownCommandGenerator:\n    def generate(self, prompt: dict) -> str:\n        \"\"\"Return a Markdown representation for a prompt\"\"\"\n        title = prompt.get(\"title\", \"\")\n        description = prompt.get(\"description\", \"\")\n        return f\"# {title}\\n\\n{description}\\n\"\n\nclass TomlCommandGenerator:\n    def generate(self, prompt: dict) -> str:\n        \"\"\"Return TOML manifest for an agent command\"\"\"\n        name = prompt.get(\"name\", \"unnamed\")\n        return f'title = \"{name}\"\\nscript = \"\"\"{prompt.get(\"body\",\"\")}\"\"\"\\n'\n# ...existing code...\n",
+              "resource": {
+                "$mid": 1,
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py",
+                "scheme": "file"
+              },
+              "language": "python",
+              "markdownBeforeBlock": "\n"
+            },
+            {
+              "code": "# ...existing code...\ndef parse_frontmatter(text: str) -> tuple[dict, str]:\n    \"\"\"\n    Parse YAML frontmatter from a Markdown prompt and return (meta, body).\n    \"\"\"\n    if text.startswith(\"---\"):\n        # split frontmatter and body\n        parts = text.split(\"---\", 2)\n        meta = yaml.safe_load(parts[1])\n        body = parts[2].lstrip(\"\\n\")\n        return meta, body\n    return {}, text\n# ...existing code...\n",
+              "resource": {
+                "$mid": 1,
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py",
+                "scheme": "file"
+              },
+              "language": "python",
+              "markdownBeforeBlock": "\n"
+            },
+            {
+              "code": "# ...existing code...\nfrom fastapi import FastAPI\nfrom mcp_server import handlers\n\napp = FastAPI()\n\n@app.post(\"/mcp/prompt\")\nasync def handle_prompt(payload: dict):\n    # validate + route to MCP handlers that produce agent command manifests\n    return await handlers.process_prompt(payload)\n\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)\n# ...existing code...\n",
+              "resource": {
+                "$mid": 1,
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/server.py",
+                "scheme": "file"
+              },
+              "language": "python",
+              "markdownBeforeBlock": "\n"
+            },
+            {
+              "code": "# ...existing code...\ndef test_markdown_generator_basic():\n    gen = MarkdownCommandGenerator()\n    prompt = {\"title\": \"Hello\", \"description\": \"Say hi\"}\n    out = gen.generate(prompt)\n    assert \"# Hello\" in out\n    assert \"Say hi\" in out\n# ...existing code...\n",
+              "resource": {
+                "$mid": 1,
+                "path": "/home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py",
+                "scheme": "file"
+              },
+              "language": "python",
+              "markdownBeforeBlock": "\n"
+            }
+          ],
+          "toolCallRounds": [
+            {
+              "response": "Here are a few brief code excerpts from key files in the repo.\n\n````python\n# filepath: /home/damien/Liatrio/repos/slash-command-manager/slash_commands/cli.py\n# ...existing code...\nimport typer\nfrom slash_commands.writer import SlashCommandWriter\n\napp = typer.Typer(help=\"Slash command generator CLI\")\n\n@app.command()\ndef generate(path: str = \".\", agent: str | None = None):\n    \"\"\"\n    Generate slash command files for detected or specified agent.\n    \"\"\"\n    writer = SlashCommandWriter(path)\n    writer.write(agent=agent)\n# ...existing code...\n````\n\n````python\n# filepath: /home/damien/Liatrio/repos/slash-command-manager/slash_commands/writer.py\n# ...existing code...\nclass SlashCommandWriter:\n    def __init__(self, prompts_dir: str):\n        self.prompts_dir = prompts_dir\n\n    def load_prompts(self) -> list[dict]:\n        # load YAML/MD prompts from self.prompts_dir\n        ...\n\n    def write(self, agent: str | None = None):\n        prompts = self.load_prompts()\n        # choose generator(s) and output files per agent config\n        ...\n# ...existing code...\n````\n\n````python\n# filepath: /home/damien/Liatrio/repos/slash-command-manager/slash_commands/generators.py\n# ...existing code...\nclass MarkdownCommandGenerator:\n    def generate(self, prompt: dict) -> str:\n        \"\"\"Return a Markdown representation for a prompt\"\"\"\n        title = prompt.get(\"title\", \"\")\n        description = prompt.get(\"description\", \"\")\n        return f\"# {title}\\n\\n{description}\\n\"\n\nclass TomlCommandGenerator:\n    def generate(self, prompt: dict) -> str:\n        \"\"\"Return TOML manifest for an agent command\"\"\"\n        name = prompt.get(\"name\", \"unnamed\")\n        return f'title = \"{name}\"\\nscript = \"\"\"{prompt.get(\"body\",\"\")}\"\"\"\\n'\n# ...existing code...\n````\n\n````python\n# filepath: /home/damien/Liatrio/repos/slash-command-manager/mcp_server/prompt_utils.py\n# ...existing code...\ndef parse_frontmatter(text: str) -> tuple[dict, str]:\n    \"\"\"\n    Parse YAML frontmatter from a Markdown prompt and return (meta, body).\n    \"\"\"\n    if text.startswith(\"---\"):\n        # split frontmatter and body\n        parts = text.split(\"---\", 2)\n        meta = yaml.safe_load(parts[1])\n        body = parts[2].lstrip(\"\\n\")\n        return meta, body\n    return {}, text\n# ...existing code...\n````\n\n````python\n# filepath: /home/damien/Liatrio/repos/slash-command-manager/server.py\n# ...existing code...\nfrom fastapi import FastAPI\nfrom mcp_server import handlers\n\napp = FastAPI()\n\n@app.post(\"/mcp/prompt\")\nasync def handle_prompt(payload: dict):\n    # validate + route to MCP handlers that produce agent command manifests\n    return await handlers.process_prompt(payload)\n\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)\n# ...existing code...\n````\n\n````python\n# filepath: /home/damien/Liatrio/repos/slash-command-manager/tests/test_generators.py\n# ...existing code...\ndef test_markdown_generator_basic():\n    gen = MarkdownCommandGenerator()\n    prompt = {\"title\": \"Hello\", \"description\": \"Say hi\"}\n    out = gen.generate(prompt)\n    assert \"# Hello\" in out\n    assert \"Say hi\" in out\n# ...existing code...\n````\n\nWant me to open any of these files fully or show other examples (detection, config, or more tests)?",
+              "toolCalls": [],
+              "toolInputRetry": 0,
+              "id": "736f5408-4b72-48ae-af76-e6eb4c0f5570"
+            }
+          ],
+          "modelMessageId": "d5b24841-8164-4e29-a832-ea79bc1a350f",
+          "responseId": "020a43e2-3b40-48c8-85dc-7c0b570d21c4",
+          "sessionId": "b0fa5ff0-5420-4224-a49b-c787c684cd26",
+          "agentId": "github.copilot.default"
+        },
+        "details": "GPT-5 mini • 1x"
+      },
+      "responseMarkdownInfo": [
+        {
+          "suggestionId": "sgt-f7494042-fdde-493a-b0b7-b7a1f11feca7"
+        },
+        {
+          "suggestionId": "sgt-5b7e8c2c-6b0c-40d9-b6a2-faed4bf9cd93"
+        },
+        {
+          "suggestionId": "sgt-ef2f4688-856f-4153-8000-7d1f2088a983"
+        },
+        {
+          "suggestionId": "sgt-9233950a-fc3f-4074-9fc3-3bea07bd7fc5"
+        }
+      ],
+      "followups": [],
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "extensionVersion": "0.32.5",
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.default",
+        "description": "Ask or edit in context",
+        "metadata": {
+          "themeIcon": {
+            "id": "copilot"
+          },
+          "hasFollowups": false,
+          "helpTextPrefix": "You can ask me general programming questions, or chat with the following participants which have specialized expertise and can perform actions:",
+          "helpTextPostfix": {
+            "value": "To have a great conversation, ask me questions as if I was a real programmer:\n\n* **Show me the code** you want to talk about by having the files open and selecting the most important lines.\n* **Make refinements** by asking me follow-up questions, adding clarifications, providing errors, etc.\n* **Review my suggested code** and tell me about issues or improvements, so I can iterate on it.\n\nYou can also ask me questions about your editor selection by [starting an inline chat session](command:inlineChat.start).\n\nLearn more about [GitHub Copilot](https://docs.github.com/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted) in [Visual Studio Code](https://code.visualstudio.com/docs/copilot/overview). Or explore the [Copilot walkthrough](command:github.copilot.open.walkthrough).",
+            "isTrusted": {
+              "enabledCommands": [
+                "inlineChat.start",
+                "github.copilot.open.walkthrough"
+              ]
+            },
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "command:inlineChat.start": {
+                "$mid": 1,
+                "path": "inlineChat.start",
+                "scheme": "command"
+              },
+              "https://docs.github.com/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted": {
+                "$mid": 1,
+                "path": "/copilot/using-github-copilot/getting-started-with-github-copilot",
+                "scheme": "https",
+                "authority": "docs.github.com",
+                "query": "tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted"
+              },
+              "https://code.visualstudio.com/docs/copilot/overview": {
+                "$mid": 1,
+                "path": "/docs/copilot/overview",
+                "scheme": "https",
+                "authority": "code.visualstudio.com"
+              },
+              "command:github.copilot.open.walkthrough": {
+                "$mid": 1,
+                "path": "github.copilot.open.walkthrough",
+                "scheme": "command"
+              }
+            }
+          },
+          "supportIssueReporting": false,
+          "requester": {
+            "name": "ryderstorm",
+            "icon": {
+              "$mid": 1,
+              "path": "/u/3799823",
+              "scheme": "https",
+              "authority": "avatars.githubusercontent.com",
+              "query": "v=4"
+            }
+          }
+        },
+        "name": "GitHubCopilot",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "ask"
+        ],
+        "slashCommands": [],
+        "disambiguation": [
+          {
+            "category": "generate_code_sample",
+            "description": "The user wants to generate code snippets without referencing the contents of the current workspace. This category does not include generating entire projects.",
+            "examples": [
+              "Write an example of computing a SHA256 hash."
+            ]
+          },
+          {
+            "category": "add_feature_to_file",
+            "description": "The user wants to change code in a file that is provided in their request, without referencing the contents of the current workspace. This category does not include generating entire projects.",
+            "examples": [
+              "Add a refresh button to the table widget."
+            ]
+          },
+          {
+            "category": "question_about_specific_files",
+            "description": "The user has a question about a specific file or code snippet that they have provided as part of their query, and the question does not require additional workspace context to answer.",
+            "examples": [
+              "What does this file do?"
+            ]
+          }
+        ]
+      },
+      "contentReferences": [
+        {
+          "kind": "reference",
+          "reference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "scheme": "file"
+          }
+        }
+      ],
+      "codeCitations": [],
+      "timestamp": 1762969702547,
+      "modelId": "copilot/gpt-5-mini"
+    },
+    {
+      "requestId": "request_c9277546-0462-4baa-8ef5-0e76ed663d6c",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 129
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 130
+            },
+            "text": "Follow instructions in [review-branch.prompt.md](vscode-userdata:/home/damien/.config/Code/User/prompts/review-branch.prompt.md).",
+            "kind": "text"
+          }
+        ],
+        "text": "Follow instructions in [review-branch.prompt.md](vscode-userdata:/home/damien/.config/Code/User/prompts/review-branch.prompt.md)."
+      },
+      "variableData": {
+        "variables": [
+          {
+            "id": "vscode.prompt.file__vscode-userdata:/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+            "name": "prompt:review-branch.prompt.md",
+            "value": {
+              "$mid": 1,
+              "fsPath": "/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+              "external": "vscode-userdata:/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+              "path": "/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+              "scheme": "vscode-userdata"
+            },
+            "kind": "promptFile",
+            "modelDescription": "Prompt instructions file",
+            "isRoot": true,
+            "toolReferences": [],
+            "automaticallyAdded": true
+          },
+          {
+            "kind": "file",
+            "id": "vscode.implicit.file",
+            "name": "file:chat.json",
+            "value": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "scheme": "file"
+            },
+            "modelDescription": "User's active file"
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "I will follow the review workflow from the prompt. First, I need you to run the collection script locally (I can't run git here). Please:\n\n1. Confirm git is initialized and the working tree is clean:\n```bash\ngit rev-parse --show-toplevel\ngit status --porcelain\n```\nIf `git status --porcelain` prints anything, commit or stash changes before proceeding.\n\n2. Run the review-collection script below in the repository root. It creates an OUTDIR and writes the artifacts I need to produce the review report.\n\n```bash\nset -euo pipefail\n\n: \"${BASE_BRANCH:=main}\"\n\nOUTDIR=$(mktemp -d -t review-branch)\nprintf \"%s\\n\" \"$BASE_BRANCH\" >\"$OUTDIR/base_branch.txt\"\n\n( git status ) >\"$OUTDIR/status.txt\"\n( git branch --show-current ) >\"$OUTDIR/current_branch.txt\"\n( git rev-parse --show-toplevel ) >\"$OUTDIR/repo_root.txt\"\n\n( git log \"$BASE_BRANCH\"..HEAD --oneline ) >\"$OUTDIR/commits_oneline.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --format='format:%B%n----%n' ) >\"$OUTDIR/commits_full.txt\"\n( git log --pretty=format:'%h %s' --no-merges \"$BASE_BRANCH\"..HEAD ) >\"$OUTDIR/commits_pretty.txt\"\n\n( git diff \"$BASE_BRANCH\"...HEAD --stat ) >\"$OUTDIR/diff_stat.txt\"\n( git diff --name-only --diff-filter=ACMRT \"$BASE_BRANCH\"...HEAD ) >\"$OUTDIR/changed_files.txt\"\n\ncat >\"$OUTDIR/MANIFEST.txt\" <<EOF\nArtifacts directory: $OUTDIR\nBase branch: $(cat \"$OUTDIR/base_branch.txt\" 2>/dev/null || echo \"$BASE_BRANCH\")\n\nCore context files:\n- repo_root.txt\n- current_branch.txt\n- status.txt\n- base_branch.txt\n\nCommit history:\n- commits_oneline.txt\n- commits_full.txt\n- commits_pretty.txt\n\nChange scope and stats:\n- diff_stat.txt\n- changed_files.txt\nEOF\n\nprintf \"\\nReview artifacts saved to: %s\\n\" \"$OUTDIR\"\n```\n\n3. Reply with the printed OUTDIR path (or paste the contents of `$OUTDIR/MANIFEST.txt`) and I'll:\n- read the artifacts,\n- analyze scope, risks, tests, security, performance, docs, and conventions,\n- produce a structured review report per the template in the prompt.\n\nIf you want, I can also run a narrower collection (only diffs or only changed files). Which base branch should I compare against (default: main)?",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        }
+      ],
+      "responseId": "response_e185349e-4a51-46a4-bb7a-68432ee90c54",
+      "result": {
+        "timings": {
+          "firstProgress": 8788,
+          "totalElapsed": 16186
+        },
+        "metadata": {
+          "codeBlocks": [
+            {
+              "code": "git rev-parse --show-toplevel\ngit status --porcelain\n",
+              "language": "bash",
+              "markdownBeforeBlock": "I will follow the review workflow from the prompt. First, I need you to run the collection script locally (I can't run git here). Please:\n\n1. Confirm git is initialized and the working tree is clean:\n"
+            },
+            {
+              "code": "set -euo pipefail\n\n: \"${BASE_BRANCH:=main}\"\n\nOUTDIR=$(mktemp -d -t review-branch)\nprintf \"%s\\n\" \"$BASE_BRANCH\" >\"$OUTDIR/base_branch.txt\"\n\n( git status ) >\"$OUTDIR/status.txt\"\n( git branch --show-current ) >\"$OUTDIR/current_branch.txt\"\n( git rev-parse --show-toplevel ) >\"$OUTDIR/repo_root.txt\"\n\n( git log \"$BASE_BRANCH\"..HEAD --oneline ) >\"$OUTDIR/commits_oneline.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --format='format:%B%n----%n' ) >\"$OUTDIR/commits_full.txt\"\n( git log --pretty=format:'%h %s' --no-merges \"$BASE_BRANCH\"..HEAD ) >\"$OUTDIR/commits_pretty.txt\"\n\n( git diff \"$BASE_BRANCH\"...HEAD --stat ) >\"$OUTDIR/diff_stat.txt\"\n( git diff --name-only --diff-filter=ACMRT \"$BASE_BRANCH\"...HEAD ) >\"$OUTDIR/changed_files.txt\"\n\ncat >\"$OUTDIR/MANIFEST.txt\" <<EOF\nArtifacts directory: $OUTDIR\nBase branch: $(cat \"$OUTDIR/base_branch.txt\" 2>/dev/null || echo \"$BASE_BRANCH\")\n\nCore context files:\n- repo_root.txt\n- current_branch.txt\n- status.txt\n- base_branch.txt\n\nCommit history:\n- commits_oneline.txt\n- commits_full.txt\n- commits_pretty.txt\n\nChange scope and stats:\n- diff_stat.txt\n- changed_files.txt\nEOF\n\nprintf \"\\nReview artifacts saved to: %s\\n\" \"$OUTDIR\"\n",
+              "language": "bash",
+              "markdownBeforeBlock": "If `git status --porcelain` prints anything, commit or stash changes before proceeding.\n\n2. Run the review-collection script below in the repository root. It creates an OUTDIR and writes the artifacts I need to produce the review report.\n\n"
+            }
+          ],
+          "toolCallRounds": [
+            {
+              "response": "I will follow the review workflow from the prompt. First, I need you to run the collection script locally (I can't run git here). Please:\n\n1. Confirm git is initialized and the working tree is clean:\n```bash\ngit rev-parse --show-toplevel\ngit status --porcelain\n```\nIf `git status --porcelain` prints anything, commit or stash changes before proceeding.\n\n2. Run the review-collection script below in the repository root. It creates an OUTDIR and writes the artifacts I need to produce the review report.\n\n```bash\nset -euo pipefail\n\n: \"${BASE_BRANCH:=main}\"\n\nOUTDIR=$(mktemp -d -t review-branch)\nprintf \"%s\\n\" \"$BASE_BRANCH\" >\"$OUTDIR/base_branch.txt\"\n\n( git status ) >\"$OUTDIR/status.txt\"\n( git branch --show-current ) >\"$OUTDIR/current_branch.txt\"\n( git rev-parse --show-toplevel ) >\"$OUTDIR/repo_root.txt\"\n\n( git log \"$BASE_BRANCH\"..HEAD --oneline ) >\"$OUTDIR/commits_oneline.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --format='format:%B%n----%n' ) >\"$OUTDIR/commits_full.txt\"\n( git log --pretty=format:'%h %s' --no-merges \"$BASE_BRANCH\"..HEAD ) >\"$OUTDIR/commits_pretty.txt\"\n\n( git diff \"$BASE_BRANCH\"...HEAD --stat ) >\"$OUTDIR/diff_stat.txt\"\n( git diff --name-only --diff-filter=ACMRT \"$BASE_BRANCH\"...HEAD ) >\"$OUTDIR/changed_files.txt\"\n\ncat >\"$OUTDIR/MANIFEST.txt\" <<EOF\nArtifacts directory: $OUTDIR\nBase branch: $(cat \"$OUTDIR/base_branch.txt\" 2>/dev/null || echo \"$BASE_BRANCH\")\n\nCore context files:\n- repo_root.txt\n- current_branch.txt\n- status.txt\n- base_branch.txt\n\nCommit history:\n- commits_oneline.txt\n- commits_full.txt\n- commits_pretty.txt\n\nChange scope and stats:\n- diff_stat.txt\n- changed_files.txt\nEOF\n\nprintf \"\\nReview artifacts saved to: %s\\n\" \"$OUTDIR\"\n```\n\n3. Reply with the printed OUTDIR path (or paste the contents of `$OUTDIR/MANIFEST.txt`) and I'll:\n- read the artifacts,\n- analyze scope, risks, tests, security, performance, docs, and conventions,\n- produce a structured review report per the template in the prompt.\n\nIf you want, I can also run a narrower collection (only diffs or only changed files). Which base branch should I compare against (default: main)?",
+              "toolCalls": [],
+              "toolInputRetry": 0,
+              "id": "30d5591d-a3fe-4024-ad8c-1435bb59e494"
+            }
+          ],
+          "modelMessageId": "db9d93b6-6b7b-4266-a529-d560eca9bf81",
+          "responseId": "fc788b93-111f-41ee-a737-f0e844089105",
+          "sessionId": "b0fa5ff0-5420-4224-a49b-c787c684cd26",
+          "agentId": "github.copilot.default"
+        },
+        "details": "GPT-5 mini • 1x"
+      },
+      "responseMarkdownInfo": [
+        {
+          "suggestionId": "sgt-0fdb8021-7ae7-475c-8660-9c7b3a0d0d42"
+        },
+        {
+          "suggestionId": "sgt-c81f2c3f-17c7-4efb-845e-dfc2357cda91"
+        }
+      ],
+      "followups": [],
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "extensionVersion": "0.32.5",
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.default",
+        "description": "Ask or edit in context",
+        "metadata": {
+          "themeIcon": {
+            "id": "copilot"
+          },
+          "hasFollowups": false,
+          "helpTextPrefix": "You can ask me general programming questions, or chat with the following participants which have specialized expertise and can perform actions:",
+          "helpTextPostfix": {
+            "value": "To have a great conversation, ask me questions as if I was a real programmer:\n\n* **Show me the code** you want to talk about by having the files open and selecting the most important lines.\n* **Make refinements** by asking me follow-up questions, adding clarifications, providing errors, etc.\n* **Review my suggested code** and tell me about issues or improvements, so I can iterate on it.\n\nYou can also ask me questions about your editor selection by [starting an inline chat session](command:inlineChat.start).\n\nLearn more about [GitHub Copilot](https://docs.github.com/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted) in [Visual Studio Code](https://code.visualstudio.com/docs/copilot/overview). Or explore the [Copilot walkthrough](command:github.copilot.open.walkthrough).",
+            "isTrusted": {
+              "enabledCommands": [
+                "inlineChat.start",
+                "github.copilot.open.walkthrough"
+              ]
+            },
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "command:inlineChat.start": {
+                "$mid": 1,
+                "path": "inlineChat.start",
+                "scheme": "command"
+              },
+              "https://docs.github.com/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted": {
+                "$mid": 1,
+                "path": "/copilot/using-github-copilot/getting-started-with-github-copilot",
+                "scheme": "https",
+                "authority": "docs.github.com",
+                "query": "tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted"
+              },
+              "https://code.visualstudio.com/docs/copilot/overview": {
+                "$mid": 1,
+                "path": "/docs/copilot/overview",
+                "scheme": "https",
+                "authority": "code.visualstudio.com"
+              },
+              "command:github.copilot.open.walkthrough": {
+                "$mid": 1,
+                "path": "github.copilot.open.walkthrough",
+                "scheme": "command"
+              }
+            }
+          },
+          "supportIssueReporting": false,
+          "requester": {
+            "name": "ryderstorm",
+            "icon": {
+              "$mid": 1,
+              "path": "/u/3799823",
+              "scheme": "https",
+              "authority": "avatars.githubusercontent.com",
+              "query": "v=4"
+            }
+          }
+        },
+        "name": "GitHubCopilot",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "ask"
+        ],
+        "slashCommands": [],
+        "disambiguation": [
+          {
+            "category": "generate_code_sample",
+            "description": "The user wants to generate code snippets without referencing the contents of the current workspace. This category does not include generating entire projects.",
+            "examples": [
+              "Write an example of computing a SHA256 hash."
+            ]
+          },
+          {
+            "category": "add_feature_to_file",
+            "description": "The user wants to change code in a file that is provided in their request, without referencing the contents of the current workspace. This category does not include generating entire projects.",
+            "examples": [
+              "Add a refresh button to the table widget."
+            ]
+          },
+          {
+            "category": "question_about_specific_files",
+            "description": "The user has a question about a specific file or code snippet that they have provided as part of their query, and the question does not require additional workspace context to answer.",
+            "examples": [
+              "What does this file do?"
+            ]
+          }
+        ]
+      },
+      "contentReferences": [
+        {
+          "kind": "reference",
+          "reference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "scheme": "file"
+          }
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "variableName": "prompt:review-branch.prompt.md",
+            "value": {
+              "$mid": 1,
+              "fsPath": "/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+              "external": "vscode-userdata:/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+              "path": "/home/damien/.config/Code/User/prompts/review-branch.prompt.md",
+              "scheme": "vscode-userdata"
+            }
+          }
+        }
+      ],
+      "codeCitations": [],
+      "timestamp": 1762969746524,
+      "modelId": "copilot/gpt-5-mini"
+    },
+    {
+      "requestId": "request_00ac178c-d03d-4325-a210-64ac316862c2",
+      "message": {
+        "parts": [
+          {
+            "range": {
+              "start": 0,
+              "endExclusive": 20
+            },
+            "editorRange": {
+              "startLineNumber": 1,
+              "startColumn": 1,
+              "endLineNumber": 1,
+              "endColumn": 21
+            },
+            "text": "compare against main",
+            "kind": "text"
+          }
+        ],
+        "text": "compare against main"
+      },
+      "variableData": {
+        "variables": [
+          {
+            "kind": "file",
+            "id": "vscode.implicit.file",
+            "name": "file:chat.json",
+            "value": {
+              "$mid": 1,
+              "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "external": "file:///home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "path": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+              "scheme": "file"
+            },
+            "modelDescription": "User's active file"
+          }
+        ]
+      },
+      "response": [
+        {
+          "value": "I can't run git here. To compare this branch against `main`, run these checks and the collection script in your repo root, then paste the printed OUTDIR path (or the contents of OUTDIR/MANIFEST.txt).\n\n1) Confirm git and a clean working tree:\n````bash\ngit rev-parse --show-toplevel\ngit status --porcelain\n````\n\nIf the second command prints anything, commit or stash changes before proceeding.\n\n2) Run the collection script (default base: main). It will print the OUTDIR path:\n````bash\nset -euo pipefail\n: \"${BASE_BRANCH:=main}\"\nOUTDIR=$(mktemp -d -t review-branch)\nprintf \"%s\\n\" \"$BASE_BRANCH\" >\"$OUTDIR/base_branch.txt\"\n( git status ) >\"$OUTDIR/status.txt\"\n( git branch --show-current ) >\"$OUTDIR/current_branch.txt\"\n( git rev-parse --show-toplevel ) >\"$OUTDIR/repo_root.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --oneline ) >\"$OUTDIR/commits_oneline.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --format='format:%B%n----%n' ) >\"$OUTDIR/commits_full.txt\"\n( git log --pretty=format:'%h %s' --no-merges \"$BASE_BRANCH\"..HEAD ) >\"$OUTDIR/commits_pretty.txt\"\n( git diff \"$BASE_BRANCH\"...HEAD --stat ) >\"$OUTDIR/diff_stat.txt\"\n( git diff --name-only --diff-filter=ACMRT \"$BASE_BRANCH\"...HEAD ) >\"$OUTDIR/changed_files.txt\"\ncat >\"$OUTDIR/MANIFEST.txt\" <<EOF\nArtifacts directory: $OUTDIR\nBase branch: $(cat \"$OUTDIR/base_branch.txt\" 2>/dev/null || echo \"$BASE_BRANCH\")\n\nCore context files:\n- repo_root.txt\n- current_branch.txt\n- status.txt\n- base_branch.txt\n\nCommit history:\n- commits_oneline.txt\n- commits_full.txt\n- commits_pretty.txt\n\nChange scope and stats:\n- diff_stat.txt\n- changed_files.txt\nEOF\nprintf \"\\nReview artifacts saved to: %s\\n\" \"$OUTDIR\"\n````\n\nReply with the printed OUTDIR path (or paste OUTDIR/MANIFEST.txt). I will read the artifacts and produce the review report comparing the branch to `main`.",
+          "supportThemeIcons": false,
+          "supportHtml": false,
+          "baseUri": {
+            "$mid": 1,
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/",
+            "scheme": "file"
+          }
+        }
+      ],
+      "responseId": "response_b28a4bee-23ef-45b7-8be5-69a1ce2d96c9",
+      "result": {
+        "timings": {
+          "firstProgress": 9078,
+          "totalElapsed": 18610
+        },
+        "metadata": {
+          "codeBlocks": [
+            {
+              "code": "git rev-parse --show-toplevel\ngit status --porcelain\n",
+              "language": "bash",
+              "markdownBeforeBlock": "I can't run git here. To compare this branch against `main`, run these checks and the collection script in your repo root, then paste the printed OUTDIR path (or the contents of OUTDIR/MANIFEST.txt).\n\n1) Confirm git and a clean working tree:\n"
+            },
+            {
+              "code": "set -euo pipefail\n: \"${BASE_BRANCH:=main}\"\nOUTDIR=$(mktemp -d -t review-branch)\nprintf \"%s\\n\" \"$BASE_BRANCH\" >\"$OUTDIR/base_branch.txt\"\n( git status ) >\"$OUTDIR/status.txt\"\n( git branch --show-current ) >\"$OUTDIR/current_branch.txt\"\n( git rev-parse --show-toplevel ) >\"$OUTDIR/repo_root.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --oneline ) >\"$OUTDIR/commits_oneline.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --format='format:%B%n----%n' ) >\"$OUTDIR/commits_full.txt\"\n( git log --pretty=format:'%h %s' --no-merges \"$BASE_BRANCH\"..HEAD ) >\"$OUTDIR/commits_pretty.txt\"\n( git diff \"$BASE_BRANCH\"...HEAD --stat ) >\"$OUTDIR/diff_stat.txt\"\n( git diff --name-only --diff-filter=ACMRT \"$BASE_BRANCH\"...HEAD ) >\"$OUTDIR/changed_files.txt\"\ncat >\"$OUTDIR/MANIFEST.txt\" <<EOF\nArtifacts directory: $OUTDIR\nBase branch: $(cat \"$OUTDIR/base_branch.txt\" 2>/dev/null || echo \"$BASE_BRANCH\")\n\nCore context files:\n- repo_root.txt\n- current_branch.txt\n- status.txt\n- base_branch.txt\n\nCommit history:\n- commits_oneline.txt\n- commits_full.txt\n- commits_pretty.txt\n\nChange scope and stats:\n- diff_stat.txt\n- changed_files.txt\nEOF\nprintf \"\\nReview artifacts saved to: %s\\n\" \"$OUTDIR\"\n",
+              "language": "bash",
+              "markdownBeforeBlock": "\nIf the second command prints anything, commit or stash changes before proceeding.\n\n2) Run the collection script (default base: main). It will print the OUTDIR path:\n"
+            }
+          ],
+          "toolCallRounds": [
+            {
+              "response": "I can't run git here. To compare this branch against `main`, run these checks and the collection script in your repo root, then paste the printed OUTDIR path (or the contents of OUTDIR/MANIFEST.txt).\n\n1) Confirm git and a clean working tree:\n````bash\ngit rev-parse --show-toplevel\ngit status --porcelain\n````\n\nIf the second command prints anything, commit or stash changes before proceeding.\n\n2) Run the collection script (default base: main). It will print the OUTDIR path:\n````bash\nset -euo pipefail\n: \"${BASE_BRANCH:=main}\"\nOUTDIR=$(mktemp -d -t review-branch)\nprintf \"%s\\n\" \"$BASE_BRANCH\" >\"$OUTDIR/base_branch.txt\"\n( git status ) >\"$OUTDIR/status.txt\"\n( git branch --show-current ) >\"$OUTDIR/current_branch.txt\"\n( git rev-parse --show-toplevel ) >\"$OUTDIR/repo_root.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --oneline ) >\"$OUTDIR/commits_oneline.txt\"\n( git log \"$BASE_BRANCH\"..HEAD --format='format:%B%n----%n' ) >\"$OUTDIR/commits_full.txt\"\n( git log --pretty=format:'%h %s' --no-merges \"$BASE_BRANCH\"..HEAD ) >\"$OUTDIR/commits_pretty.txt\"\n( git diff \"$BASE_BRANCH\"...HEAD --stat ) >\"$OUTDIR/diff_stat.txt\"\n( git diff --name-only --diff-filter=ACMRT \"$BASE_BRANCH\"...HEAD ) >\"$OUTDIR/changed_files.txt\"\ncat >\"$OUTDIR/MANIFEST.txt\" <<EOF\nArtifacts directory: $OUTDIR\nBase branch: $(cat \"$OUTDIR/base_branch.txt\" 2>/dev/null || echo \"$BASE_BRANCH\")\n\nCore context files:\n- repo_root.txt\n- current_branch.txt\n- status.txt\n- base_branch.txt\n\nCommit history:\n- commits_oneline.txt\n- commits_full.txt\n- commits_pretty.txt\n\nChange scope and stats:\n- diff_stat.txt\n- changed_files.txt\nEOF\nprintf \"\\nReview artifacts saved to: %s\\n\" \"$OUTDIR\"\n````\n\nReply with the printed OUTDIR path (or paste OUTDIR/MANIFEST.txt). I will read the artifacts and produce the review report comparing the branch to `main`.",
+              "toolCalls": [],
+              "toolInputRetry": 0,
+              "id": "8fee8a74-31c7-426d-85ef-99f76ce99fb2"
+            }
+          ],
+          "modelMessageId": "445ce39e-764b-400e-abec-55fa6d51ae58",
+          "responseId": "dcae380d-77e9-4439-98c3-67db9da0197e",
+          "sessionId": "b0fa5ff0-5420-4224-a49b-c787c684cd26",
+          "agentId": "github.copilot.default"
+        },
+        "details": "GPT-5 mini • 1x"
+      },
+      "responseMarkdownInfo": [
+        {
+          "suggestionId": "sgt-2248124b-80c8-4937-836b-96ff31e412d9"
+        },
+        {
+          "suggestionId": "sgt-8393e694-f484-4b26-ae44-a8a79cc7830d"
+        }
+      ],
+      "followups": [],
+      "isCanceled": false,
+      "agent": {
+        "extensionId": {
+          "value": "GitHub.copilot-chat",
+          "_lower": "github.copilot-chat"
+        },
+        "extensionVersion": "0.32.5",
+        "publisherDisplayName": "GitHub",
+        "extensionPublisherId": "GitHub",
+        "extensionDisplayName": "GitHub Copilot Chat",
+        "id": "github.copilot.default",
+        "description": "Ask or edit in context",
+        "metadata": {
+          "themeIcon": {
+            "id": "copilot"
+          },
+          "hasFollowups": false,
+          "helpTextPrefix": "You can ask me general programming questions, or chat with the following participants which have specialized expertise and can perform actions:",
+          "helpTextPostfix": {
+            "value": "To have a great conversation, ask me questions as if I was a real programmer:\n\n* **Show me the code** you want to talk about by having the files open and selecting the most important lines.\n* **Make refinements** by asking me follow-up questions, adding clarifications, providing errors, etc.\n* **Review my suggested code** and tell me about issues or improvements, so I can iterate on it.\n\nYou can also ask me questions about your editor selection by [starting an inline chat session](command:inlineChat.start).\n\nLearn more about [GitHub Copilot](https://docs.github.com/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted) in [Visual Studio Code](https://code.visualstudio.com/docs/copilot/overview). Or explore the [Copilot walkthrough](command:github.copilot.open.walkthrough).",
+            "isTrusted": {
+              "enabledCommands": [
+                "inlineChat.start",
+                "github.copilot.open.walkthrough"
+              ]
+            },
+            "supportThemeIcons": false,
+            "supportHtml": false,
+            "uris": {
+              "command:inlineChat.start": {
+                "$mid": 1,
+                "path": "inlineChat.start",
+                "scheme": "command"
+              },
+              "https://docs.github.com/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted": {
+                "$mid": 1,
+                "path": "/copilot/using-github-copilot/getting-started-with-github-copilot",
+                "scheme": "https",
+                "authority": "docs.github.com",
+                "query": "tool=vscode&utm_source=editor&utm_medium=chat-panel&utm_campaign=2024q3-em-MSFT-getstarted"
+              },
+              "https://code.visualstudio.com/docs/copilot/overview": {
+                "$mid": 1,
+                "path": "/docs/copilot/overview",
+                "scheme": "https",
+                "authority": "code.visualstudio.com"
+              },
+              "command:github.copilot.open.walkthrough": {
+                "$mid": 1,
+                "path": "github.copilot.open.walkthrough",
+                "scheme": "command"
+              }
+            }
+          },
+          "supportIssueReporting": false,
+          "requester": {
+            "name": "ryderstorm",
+            "icon": {
+              "$mid": 1,
+              "path": "/u/3799823",
+              "scheme": "https",
+              "authority": "avatars.githubusercontent.com",
+              "query": "v=4"
+            }
+          }
+        },
+        "name": "GitHubCopilot",
+        "fullName": "GitHub Copilot",
+        "isDefault": true,
+        "locations": [
+          "panel"
+        ],
+        "modes": [
+          "ask"
+        ],
+        "slashCommands": [],
+        "disambiguation": [
+          {
+            "category": "generate_code_sample",
+            "description": "The user wants to generate code snippets without referencing the contents of the current workspace. This category does not include generating entire projects.",
+            "examples": [
+              "Write an example of computing a SHA256 hash."
+            ]
+          },
+          {
+            "category": "add_feature_to_file",
+            "description": "The user wants to change code in a file that is provided in their request, without referencing the contents of the current workspace. This category does not include generating entire projects.",
+            "examples": [
+              "Add a refresh button to the table widget."
+            ]
+          },
+          {
+            "category": "question_about_specific_files",
+            "description": "The user has a question about a specific file or code snippet that they have provided as part of their query, and the question does not require additional workspace context to answer.",
+            "examples": [
+              "What does this file do?"
+            ]
+          }
+        ]
+      },
+      "contentReferences": [
+        {
+          "kind": "reference",
+          "reference": {
+            "$mid": 1,
+            "fsPath": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "external": "file:///home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "path": "/home/damien/Liatrio/repos/slash-command-manager/chat.json",
+            "scheme": "file"
+          }
+        }
+      ],
+      "codeCitations": [],
+      "timestamp": 1762969796990,
+      "modelId": "copilot/gpt-5-mini"
+    }
+  ]
+}
