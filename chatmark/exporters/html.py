@@ -29,9 +29,11 @@ class HTMLExporter(BaseExporter):
 
         # Convert markdown to HTML using core converter
         output_file = Path(output_path)
-        result = convert_markdown_to_html(temp_md, output_file)
-
-        # Clean up temporary file
-        temp_md.unlink()
+        try:
+            result = convert_markdown_to_html(temp_md, output_file)
+        finally:
+            # Clean up temporary file even if conversion fails
+            if temp_md.exists():
+                temp_md.unlink()
 
         return str(result)

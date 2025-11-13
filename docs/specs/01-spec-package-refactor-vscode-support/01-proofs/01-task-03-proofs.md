@@ -219,4 +219,3 @@ All demo criteria from Task 3.0 are met:
 - Added CLI usage examples with `--format` and `--export` options
 - Added testing instructions
 - Updated project status to reflect completed features
-

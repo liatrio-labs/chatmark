@@ -121,4 +121,3 @@ class TestMarkdownExporter:
         assert "def hello():" in exported_content
         assert "    print('hi')" in exported_content
         assert "```" in exported_content
-

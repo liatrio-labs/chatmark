@@ -1,7 +1,6 @@
 """Unit tests for VS Code JSON parser."""
 
 import json
-import pytest
 
 from chatmark.parsers.vscode import VSCodeParser
 
@@ -39,9 +38,7 @@ class TestVSCodeParser:
         json_data = {
             "requests": [
                 {
-                    "message": {
-                        "parts": [{"text": "What is Python?", "kind": "text"}]
-                    },
+                    "message": {"parts": [{"text": "What is Python?", "kind": "text"}]},
                     "response": [{"value": "Python is a programming language."}],
                 }
             ]
@@ -150,11 +147,7 @@ class TestVSCodeParser:
             "requests": [
                 {
                     "message": {"text": "Show me code"},
-                    "response": [
-                        {
-                            "value": "Here's some code:\n\n```python\nprint('hello')\n```"
-                        }
-                    ],
+                    "response": [{"value": "Here's some code:\n\n```python\nprint('hello')\n```"}],
                 }
             ]
         }
@@ -225,7 +218,7 @@ class TestVSCodeParser:
         """Test parsing JSON with invalid structure (missing requests)."""
         parser = VSCodeParser()
         content = '{"invalid": "structure"}'
-        
+
         # Should return empty string when requests key is missing
         result = parser.parse(content)
         assert isinstance(result, str)
@@ -297,4 +290,3 @@ class TestVSCodeParser:
         assert "**AI**" in result
         # Should extract value from nested content if needed, or skip non-value items
         assert "Actual response" in result
-

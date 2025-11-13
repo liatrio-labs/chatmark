@@ -164,13 +164,19 @@ def generate_table_of_contents(
     def build_tree(
         items: list[tuple[int, str, str]],
         start_idx: int = 0,
-        current_level: int = 2,
+        current_level: int | None = None,
         indent: int = 8,
     ) -> tuple[str, int]:
         """Recursively build nested list structure."""
         html_parts = []
         i = start_idx
         indent_str = " " * indent
+
+        # Derive starting level from first item if not provided
+        if current_level is None:
+            if i >= len(items):
+                return "", i
+            current_level = items[i][0]
 
         while i < len(items):
             level, heading_id, text = items[i]

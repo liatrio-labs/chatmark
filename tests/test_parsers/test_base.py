@@ -8,10 +8,6 @@ from chatmark.parsers.base import BaseParser
 class TestBaseParser:
     """Tests for BaseParser abstract base class."""
 
-    def test_parse_method_exists(self):
-        """Test that BaseParser has parse method."""
-        assert hasattr(BaseParser, "parse")
-
     def test_parse_is_abstract(self):
         """Test that BaseParser cannot be instantiated directly."""
         with pytest.raises(TypeError):
@@ -66,10 +62,8 @@ class TestBaseParser:
 
         class ConcreteParser(BaseParser):
             def parse(self, content: str) -> str:
-                # Should not raise exception, return empty or error format
-                if not content or len(content) < 3:
-                    return ""
-                return "**User**\n\n" + content
+                # Should not raise exception
+                return "**User**\n\n" + content if content else ""
 
         parser = ConcreteParser()
         # Should not raise exception

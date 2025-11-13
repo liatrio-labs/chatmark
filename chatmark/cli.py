@@ -45,7 +45,7 @@ def convert(
             internal_format = parser.parse(content)
         except (ValueError, KeyError) as e:
             console.print(f"[bold red]Error:[/] Failed to parse VS Code JSON: {e}")
-            raise typer.Exit(1)
+            raise typer.Exit(1) from None
     else:
         console.print(f"[bold red]Error:[/] Unknown format: {format}")
         raise typer.Exit(1)

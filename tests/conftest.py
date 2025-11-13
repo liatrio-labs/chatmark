@@ -44,4 +44,6 @@ def vscode_example_json(examples_dir: Path) -> Path:
 @pytest.fixture
 def temp_output_dir(tmp_path: Path) -> Path:
     """Return a temporary directory for test output files."""
-    return tmp_path / "output"
+    output_dir = tmp_path / "output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return output_dir

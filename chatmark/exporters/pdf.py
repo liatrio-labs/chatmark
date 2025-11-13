@@ -208,4 +208,3 @@ class PDFExporter(BaseExporter):
         temp_html.unlink()
 
         return str(pdf_path)
-

@@ -139,7 +139,9 @@ class TestCLIExports:
         """Test all export formats work with Cursor markdown input."""
         formats = ["markdown", "html", "pdf"]
         for export_format in formats:
-            output_file = temp_output_dir / f"test.{export_format if export_format != 'markdown' else 'md'}"
+            output_file = (
+                temp_output_dir / f"test.{export_format if export_format != 'markdown' else 'md'}"
+            )
             result = runner.invoke(
                 app,
                 [
@@ -160,7 +162,9 @@ class TestCLIExports:
         vscode_sample = Path(__file__).parent.parent / "fixtures" / "vscode_sample.json"
         formats = ["markdown", "html", "pdf"]
         for export_format in formats:
-            output_file = temp_output_dir / f"test.{export_format if export_format != 'markdown' else 'md'}"
+            output_file = (
+                temp_output_dir / f"test.{export_format if export_format != 'markdown' else 'md'}"
+            )
             result = runner.invoke(
                 app,
                 [
@@ -175,4 +179,3 @@ class TestCLIExports:
             )
             assert result.exit_code == 0, f"Failed for export format: {export_format}"
             assert output_file.exists(), f"Output file not created for: {export_format}"
-

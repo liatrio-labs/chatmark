@@ -6,11 +6,6 @@ from chatmark.parsers.cursor_md import CursorMarkdownParser
 class TestCursorMarkdownParser:
     """Tests for CursorMarkdownParser."""
 
-    def test_parser_instantiation(self):
-        """Test that parser can be instantiated."""
-        parser = CursorMarkdownParser()
-        assert parser is not None
-
     def test_parse_normalizes_cursor_to_ai(self):
         """Test that **Cursor** markers are normalized to **AI**."""
         parser = CursorMarkdownParser()

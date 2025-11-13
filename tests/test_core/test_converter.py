@@ -28,7 +28,6 @@ class TestConvertMarkdownToHtml:
         self, cursor_sample_md: Path, temp_output_dir: Path
     ):
         """Test that timestamped filename is generated when output not specified."""
-        # This test may be flaky due to timing, so we'll just check it creates a file
         result = convert_markdown_to_html(cursor_sample_md)
         assert result.exists()
         assert result.suffix == ".html"

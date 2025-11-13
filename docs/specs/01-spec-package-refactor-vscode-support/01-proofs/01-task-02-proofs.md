@@ -76,6 +76,7 @@ Show me example.file:21-22
 
 Included code from file: `example.file:21-22`
 Here's the code from that file.
+
 ```
 
 ### Integration Test Output
@@ -145,4 +146,3 @@ All demo criteria from Task 2.0 are met:
 - Updated `chatmark/cli.py` to support `--format vscode` option
 - Added markdown export support (`--export markdown`)
 - Integrated VSCodeParser and MarkdownExporter
-

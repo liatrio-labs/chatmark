@@ -108,4 +108,3 @@ class TestCLIVSCode:
         assert "**AI**" in lines
         # Verify structure
         assert content.count("**User**") == content.count("**AI**")
-

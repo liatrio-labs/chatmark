@@ -2,8 +2,6 @@
 
 from pathlib import Path
 
-import pytest
-
 from chatmark.exporters.pdf import PDFExporter
 
 
@@ -98,4 +96,3 @@ class TestPDFExporter:
         output_path = str(temp_output_dir / "nested" / "dir" / "test.pdf")
         exporter.export(content, output_path)
         assert Path(output_path).exists()
-

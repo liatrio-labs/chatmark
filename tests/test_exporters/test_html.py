@@ -8,11 +8,6 @@ from chatmark.exporters.html import HTMLExporter
 class TestHTMLExporter:
     """Tests for HTMLExporter."""
 
-    def test_exporter_instantiation(self):
-        """Test that exporter can be instantiated."""
-        exporter = HTMLExporter()
-        assert exporter is not None
-
     def test_export_creates_html_file(self, temp_output_dir: Path):
         """Test that export creates an HTML file."""
         exporter = HTMLExporter()

@@ -139,7 +139,9 @@ class VSCodeParser(BaseParser):
                             start_line = range_obj.get("startLineNumber")
                             end_line = range_obj.get("endLineNumber")
                             if start_line is not None and end_line is not None:
-                                ref_text = f"Included code from file: `{fs_path}:{start_line}-{end_line}`"
+                                ref_text = (
+                                    f"Included code from file: `{fs_path}:{start_line}-{end_line}`"
+                                )
                                 text_parts.append(ref_text)
 
             # Extract value field (direct or nested in content)
@@ -160,4 +162,3 @@ class VSCodeParser(BaseParser):
                     text_parts.append(content_value)
 
         return "\n".join(text_parts) if text_parts else ""
-
