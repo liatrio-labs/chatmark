@@ -336,7 +336,7 @@ Creating the audit report:
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -1023,7 +1023,7 @@ Fixing the longest lines:
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -1695,7 +1695,7 @@ This repository is in early stages and requires significant infrastructure setup
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -2369,7 +2369,7 @@ This repository is in early stages and requires significant infrastructure setup
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -3051,7 +3051,7 @@ Fixing the remaining long lines:
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -3730,7 +3730,7 @@ source projects.
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -4411,7 +4411,7 @@ source projects.
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -5101,7 +5101,7 @@ Fixing the remaining three long lines:
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -5784,7 +5784,7 @@ source projects.
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -6469,7 +6469,7 @@ source projects.
 ```markdown
 # Repository Template Audit Report
 
-**Repository:** `/home/damien/Liatrio/repos/ai-conversation-converter`
+**Repository:** `/home/damien/Liatrio/repos/chatmark`
 **Audit Date:** 2025-01-27
 **Template Baseline:** `liatrio-labs/open-source-project-template`
 **Repository Type:** Independent
@@ -7568,7 +7568,7 @@ Updating project metadata and adding tool configurations:
 
 ```toml
 [project]
-name = "ai-conversation-converter"
+name = "chatmark"
 version = "0.1.0"
 description = "A standalone Typer CLI tool for converting AI conversation exports from various IDEs and CLI tools to beautifully styled HTML and PDF versions"
 requires-python = ">=3.11"
