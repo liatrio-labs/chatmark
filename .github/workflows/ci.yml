@@ -31,15 +31,10 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: |
-          # Install dependencies from PEP 723 inline script metadata
-          uv pip install markdown typer rich weasyprint
+        run: uv sync --all-extras
 
       - name: Run tests
-        run: |
-          echo "Tests will be added here"
-          # TODO: Add pytest tests when test suite is created
-          # uv run pytest tests/
+        run: uv run pytest tests/
 
   lint:
     name: Run Linting
@@ -58,17 +53,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install ruff
-        run: uv pip install ruff
+      - name: Install dependencies
+        run: uv sync --all-extras
 
       - name: Run ruff (linter)
         run: uv run ruff check .
 
       - name: Run ruff (formatter)
         run: uv run ruff format --check .
-
-      - name: Install pre-commit
-        run: uv pip install pre-commit
 
       - name: Run pre-commit hooks
         run: uv run pre-commit run --all-files

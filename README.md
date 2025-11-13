@@ -1,4 +1,4 @@
-# AI Conversation Converter
+# Chatmark
 
 A standalone Typer CLI tool for converting AI conversation exports from
 various IDEs and CLI tools (Windsurf, Cursor, VS Code, Claude Code, Codex CLI,
@@ -19,26 +19,39 @@ professional, shareable HTML and PDF documents with:
 
 ## Current State
 
-The tool is currently a functional Typer CLI application (`md_to_html.py`) that:
+The tool is now a proper Python package with a modern CLI (`chatmark`) that:
 
-- Converts markdown files to HTML with Liatrio styling
+- Converts AI conversation exports from multiple formats (Cursor markdown, VS Code JSON) to various output formats (Markdown, HTML, PDF)
 - Generates table of contents automatically
-- Supports User/Cursor conversation entry detection
-- Optionally generates PDF versions using WeasyPrint
-- Uses PEP 723 inline script dependencies with `uv`
+- Supports User/AI conversation entry detection
+- Uses internal markdown format standard for consistent output
+- Generates PDF versions using WeasyPrint with optimized styling
+- Uses `uv` for dependency management with `pyproject.toml`
+- Includes comprehensive test suite with TDD workflow
+- Includes CI/CD pipeline for automated testing and linting
+- Configured with pre-commit hooks for code quality
 
 ## Usage
 
 ```bash
-# Convert with auto-generated timestamp filename
-./md_to_html.py document.md
+# Convert Cursor markdown to HTML (default)
+chatmark document.md --format cursor-md --export html
 
-# Convert with custom output filename
-./md_to_html.py document.md --output output.html
+# Convert VS Code JSON to markdown
+chatmark conversation.json --format vscode --export markdown --output output.md
 
-# Convert and also generate PDF
-./md_to_html.py document.md --pdf
+# Convert to PDF
+chatmark document.md --format cursor-md --export pdf --output output.pdf
+
+# All export formats: markdown, html, pdf
+# All input formats: cursor-md, vscode
 ```
+
+### CLI Options
+
+- `--format` / `-f`: Input format (`cursor-md`, `vscode`) - default: `cursor-md`
+- `--export` / `-e`: Export format (`markdown`, `html`, `pdf`) - default: `html`
+- `--output` / `-o`: Output file path (optional, defaults to input filename with appropriate extension)
 
 ## Next Steps for Conversion
 
@@ -47,15 +60,15 @@ improvements are needed:
 
 ### 1. Project Structure
 
-- [ ] Create proper `pyproject.toml` with project metadata
-- [ ] Set up package structure (if needed)
-- [ ] Add proper dependency management
-- [ ] Create installation instructions
+- [x] Create proper `pyproject.toml` with project metadata
+- [x] Set up package structure (`chatmark/` with `core/`, `parsers/`, `exporters/`)
+- [x] Add proper dependency management
+- [x] Create installation instructions
 
 ### 2. Enhanced Input Format Support
 
-- [ ] Support direct export formats from various IDEs (JSON, XML, etc.)
-- [ ] Add format detection and conversion
+- [x] Support direct export formats from various IDEs (VS Code JSON)
+- [x] Add format specification via CLI (`--format` flag)
 - [ ] Support batch processing of multiple files
 - [ ] Add directory processing mode
 
@@ -68,10 +81,11 @@ improvements are needed:
 
 ### 4. Testing & Quality
 
-- [ ] Add unit tests for conversion functions
-- [ ] Add integration tests for CLI
-- [ ] Add test fixtures with sample conversations
-- [ ] Set up CI/CD pipeline
+- [x] Add unit tests for conversion functions
+- [x] Add integration tests for CLI
+- [x] Add test fixtures with sample conversations
+- [x] Set up CI/CD pipeline
+- [x] Achieve >80% test coverage for core modules
 
 ### 5. Documentation
 
@@ -100,16 +114,54 @@ improvements are needed:
 ### Requirements
 
 - Python 3.11+
-- `uv` (for script execution)
+- `uv` (for dependency management and script execution)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd chatmark
+
+# Install dependencies with uv
+uv sync
+
+# Run the CLI tool
+uv run chatmark document.md --format cursor-md --export html
+```
 
 ### Dependencies
 
-The script uses PEP 723 inline dependencies:
+Dependencies are managed via `pyproject.toml` and can be installed with `uv sync`:
 
-- `markdown>=3.5`
-- `typer>=0.12`
-- `rich>=13.0`
-- `weasyprint>=62.0` (optional, for PDF generation)
+**Runtime dependencies:**
+
+- `markdown>=3.5` - Markdown parsing
+- `typer>=0.12` - CLI framework
+- `rich>=13.0` - Terminal output formatting
+- `weasyprint>=62.0` - PDF generation
+
+**Development dependencies:**
+
+- `ruff>=0.14.4` - Linting and formatting
+- `pytest>=9.0.1` - Testing framework
+- `pytest-cov>=6.0.0` - Test coverage reporting
+- `pre-commit>=4.4.0` - Git hooks
+
+### Testing
+
+Run the test suite:
+
+```bash
+# Run all tests
+uv run pytest tests/ -v
+
+# Run with coverage
+uv run pytest tests/ --cov=chatmark --cov-report=term-missing
+
+# Run specific test file
+uv run pytest tests/test_parsers/test_vscode_parser.py -v
+```
 
 ## License
 

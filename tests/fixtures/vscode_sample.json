@@ -1,0 +1,63 @@
+{
+  "requesterUsername": "testuser",
+  "responderUsername": "GitHub Copilot",
+  "requests": [
+    {
+      "requestId": "request_1",
+      "message": {
+        "parts": [
+          {
+            "text": "How do I parse JSON in Python?",
+            "kind": "text"
+          }
+        ],
+        "text": "How do I parse JSON in Python?"
+      },
+      "response": [
+        {
+          "value": "You can use the `json` module in Python's standard library:\n\n```python\nimport json\n\ndata = json.loads('{\"key\": \"value\"}')\n```"
+        }
+      ]
+    },
+    {
+      "requestId": "request_2",
+      "message": {
+        "parts": [
+          {
+            "text": "What about handling errors?",
+            "kind": "text"
+          }
+        ],
+        "text": "What about handling errors?"
+      },
+      "response": [
+        {
+          "value": "You can wrap it in a try-except block:\n\n```python\ntry:\n    data = json.loads(json_string)\nexcept json.JSONDecodeError as e:\n    print(f\"Error: {e}\")\n```"
+        }
+      ]
+    },
+    {
+      "requestId": "request_3",
+      "message": {
+        "text": "Show me example.file:21-22"
+      },
+      "response": [
+        {
+          "kind": "inlineReference",
+          "inlineReference": {
+            "fsPath": "example.file",
+            "location": {
+              "range": {
+                "startLineNumber": 21,
+                "endLineNumber": 22
+              }
+            }
+          }
+        },
+        {
+          "value": "Here's the code from that file."
+        }
+      ]
+    }
+  ]
+}
