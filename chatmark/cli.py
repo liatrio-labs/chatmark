@@ -8,6 +8,7 @@ from rich.console import Console
 
 from chatmark.exporters.html import HTMLExporter
 from chatmark.exporters.markdown import MarkdownExporter
+from chatmark.exporters.pdf import PDFExporter
 from chatmark.parsers.cursor_md import CursorMarkdownParser
 from chatmark.parsers.vscode import VSCodeParser
 
@@ -63,8 +64,11 @@ def convert(
         result_path = exporter.export(internal_format, str(output))
         console.print(f"[bold green]Success:[/] Created {result_path}")
     elif export == "pdf":
-        console.print("[bold red]Error:[/] PDF export not yet implemented")
-        raise typer.Exit(1)
+        exporter = PDFExporter()
+        if output is None:
+            output = input_file.with_suffix(".pdf")
+        result_path = exporter.export(internal_format, str(output))
+        console.print(f"[bold green]Success:[/] Created {result_path}")
     else:
         console.print(f"[bold red]Error:[/] Unknown export format: {export}")
         raise typer.Exit(1)
