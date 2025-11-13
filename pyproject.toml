@@ -14,8 +14,20 @@ dependencies = [
 dev = [
     "pre-commit>=4.4.0",
     "pytest>=9.0.1",
+    "pytest-cov>=6.0.0",
     "ruff>=0.14.4",
 ]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["chatmark*"]
+exclude = ["temp*", "tests*", "docs*", "examples*"]
+
+[tool.uv]
+package = true
 
 [tool.ruff]
 line-length = 100
@@ -36,6 +48,9 @@ ignore = []
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
+[project.scripts]
+chatmark = "chatmark.cli:app"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
