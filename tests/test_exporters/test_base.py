@@ -61,4 +61,3 @@ class TestBaseExporter:
         # Should not raise exception
         result = exporter.export("invalid format", "/tmp/test.html")
         assert isinstance(result, str)
-

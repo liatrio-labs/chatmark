@@ -45,4 +45,3 @@ def vscode_example_json(examples_dir: Path) -> Path:
 def temp_output_dir(tmp_path: Path) -> Path:
     """Return a temporary directory for test output files."""
     return tmp_path / "output"
-

@@ -1,2 +1,1 @@
 """Exporter module tests."""
-

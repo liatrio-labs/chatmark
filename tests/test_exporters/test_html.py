@@ -2,8 +2,6 @@
 
 from pathlib import Path
 
-import pytest
-
 from chatmark.exporters.html import HTMLExporter
 
 
@@ -53,4 +51,3 @@ class TestHTMLExporter:
         html_content = Path(output_path).read_text()
         assert "<style>" in html_content
         assert ":root" in html_content
-

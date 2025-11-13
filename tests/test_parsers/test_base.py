@@ -75,4 +75,3 @@ class TestBaseParser:
         # Should not raise exception
         result = parser.parse("x")
         assert isinstance(result, str)
-

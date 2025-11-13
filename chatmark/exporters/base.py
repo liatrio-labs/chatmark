@@ -22,4 +22,3 @@ class BaseExporter(ABC):
             Path to the created output file.
         """
         pass
-

@@ -2,10 +2,9 @@
 
 from pathlib import Path
 
-import pytest
+from typer.testing import CliRunner
 
 from chatmark.cli import app
-from typer.testing import CliRunner
 
 runner = CliRunner()
 
@@ -78,4 +77,3 @@ class TestCLICursor:
         )
         assert result.exit_code == 1
         assert "not found" in result.stdout.lower()
-

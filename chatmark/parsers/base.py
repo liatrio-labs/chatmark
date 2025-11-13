@@ -21,4 +21,3 @@ class BaseParser(ABC):
             String in internal markdown format standard with **User** and **AI** markers.
         """
         pass
-

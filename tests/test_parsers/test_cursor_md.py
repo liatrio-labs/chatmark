@@ -1,7 +1,5 @@
 """Unit tests for Cursor markdown parser."""
 
-import pytest
-
 from chatmark.parsers.cursor_md import CursorMarkdownParser
 
 
@@ -71,4 +69,3 @@ class TestCursorMarkdownParser:
         result = parser.parse(input_md)
         assert "**AI**" in result
         assert "**CURSOR**" not in result
-

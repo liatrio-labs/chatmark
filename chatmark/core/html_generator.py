@@ -102,7 +102,8 @@ def extract_headings(html_content: str) -> list[tuple[int, str, str]]:
 
 
 def generate_table_of_contents(
-    headings: list[tuple[int, str, str]], user_cursor_entries: list[dict[str, str | int]] | None = None
+    headings: list[tuple[int, str, str]],
+    user_cursor_entries: list[dict[str, str | int]] | None = None,
 ) -> str:
     """Generate HTML for table of contents from headings list as a nested tree structure.
 
@@ -160,7 +161,12 @@ def generate_table_of_contents(
         return ""
 
     # Build nested tree structure
-    def build_tree(items: list[tuple[int, str, str]], start_idx: int = 0, current_level: int = 2, indent: int = 8) -> tuple[str, int]:
+    def build_tree(
+        items: list[tuple[int, str, str]],
+        start_idx: int = 0,
+        current_level: int = 2,
+        indent: int = 8,
+    ) -> tuple[str, int]:
         """Recursively build nested list structure."""
         html_parts = []
         i = start_idx
@@ -217,7 +223,10 @@ def generate_table_of_contents(
 
 
 def add_back_to_top_links(html_content: str) -> str:
-    """Add 'Back to TOC' links after h2 headings and User/Cursor entries, excluding the Table of Contents heading."""
+    """Add 'Back to TOC' links after h2 headings and User/Cursor entries.
+
+    Excludes the Table of Contents heading.
+    """
     # Pattern to match h2 headings, but exclude the table-of-contents one
     h2_pattern = re.compile(r'(<h2 id="table-of-contents">.*?</h2>)|(<h2[^>]*>.*?</h2>)', re.DOTALL)
 
@@ -226,7 +235,8 @@ def add_back_to_top_links(html_content: str) -> str:
         # Skip if this is the table-of-contents heading
         if 'id="table-of-contents"' in h2_tag:
             return h2_tag
-        return f'{h2_tag}\n    <div class="back-to-top"><a href="#table-of-contents">↑ Back to TOC</a></div>'
+        back_link = '<div class="back-to-top"><a href="#table-of-contents">↑ Back to TOC</a></div>'
+        return f"{h2_tag}\n    {back_link}"
 
     html_content = h2_pattern.sub(add_back_link_h2, html_content)
 
@@ -237,7 +247,8 @@ def add_back_to_top_links(html_content: str) -> str:
 
     def add_back_link_user_cursor(match: re.Match[str]) -> str:
         p_tag = match.group(0)
-        return f'{p_tag}\n    <div class="back-to-top"><a href="#table-of-contents">↑ Back to TOC</a></div>'
+        back_link = '<div class="back-to-top"><a href="#table-of-contents">↑ Back to TOC</a></div>'
+        return f"{p_tag}\n    {back_link}"
 
     html_content = user_cursor_pattern.sub(add_back_link_user_cursor, html_content)
 
@@ -273,7 +284,8 @@ def generate_html_document(html_body: str, title: str | None = None) -> str:
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
     <style>
 {LIATRIO_CSS}
     </style>
@@ -288,4 +300,3 @@ def generate_html_document(html_body: str, title: str | None = None) -> str:
 </html>"""
 
     return html_document
-

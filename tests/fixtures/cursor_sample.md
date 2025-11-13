@@ -79,4 +79,3 @@ to styled HTML and PDF documents.
 - Include comprehensive README with usage instructions
 - Add example VS Code chat export file
 ```
-

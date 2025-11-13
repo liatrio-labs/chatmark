@@ -1,7 +1,5 @@
 """Unit tests for HTML generator utilities."""
 
-import pytest
-
 from chatmark.core.html_generator import (
     add_back_to_top_links,
     add_heading_ids,
@@ -99,7 +97,9 @@ class TestAddUserCursorIds:
 
     def test_mixed_user_cursor_entries(self):
         """Test adding IDs to mixed User and Cursor entries."""
-        html = "<p><strong>User</strong></p><p><strong>Cursor</strong></p><p><strong>User</strong></p>"
+        html = (
+            "<p><strong>User</strong></p><p><strong>Cursor</strong></p><p><strong>User</strong></p>"
+        )
         result = add_user_cursor_ids(html)
         assert 'id="user-1"' in result
         assert 'id="cursor-1"' in result
@@ -359,4 +359,3 @@ class TestGenerateHtmlDocument:
         result = generate_html_document(html_body)
         # Title should extract text content only
         assert "<title>Hello World - Liatrio Documentation</title>" in result
-

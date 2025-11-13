@@ -54,4 +54,3 @@ class TestConvertMarkdownToHtml:
         assert "<head>" in html_content
         assert "<body>" in html_content
         assert '<div class="container">' in html_content
-

@@ -34,4 +34,3 @@ class CursorMarkdownParser(BaseParser):
         )
 
         return normalized
-

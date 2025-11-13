@@ -104,4 +104,3 @@ def convert_markdown_to_html(markdown_file: Path, output_file: Path | None = Non
         f.write(html_document)
 
     return output_file
-

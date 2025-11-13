@@ -17,8 +17,12 @@ app = typer.Typer(name="chatmark")
 @app.command()
 def convert(
     input_file: Annotated[Path, typer.Argument(help="Input file to convert")],
-    format: Annotated[str, typer.Option("--format", "-f", help="Input format (cursor-md, vscode)")] = "cursor-md",
-    export: Annotated[str, typer.Option("--export", "-e", help="Export format (markdown, html, pdf)")] = "html",
+    format: Annotated[
+        str, typer.Option("--format", "-f", help="Input format (cursor-md, vscode)")
+    ] = "cursor-md",
+    export: Annotated[
+        str, typer.Option("--export", "-e", help="Export format (markdown, html, pdf)")
+    ] = "html",
     output: Annotated[Path | None, typer.Option("--output", "-o", help="Output file path")] = None,
 ) -> None:
     """Convert AI conversation exports to various formats."""
@@ -58,4 +62,3 @@ def convert(
 
 if __name__ == "__main__":
     app()
-

@@ -2,8 +2,6 @@
 
 from pathlib import Path
 
-import markdown
-
 from chatmark.core.converter import convert_markdown_to_html
 from chatmark.exporters.base import BaseExporter
 
@@ -37,4 +35,3 @@ class HTMLExporter(BaseExporter):
         temp_md.unlink()
 
         return str(result)
-
