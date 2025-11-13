@@ -7,7 +7,9 @@ import typer
 from rich.console import Console
 
 from chatmark.exporters.html import HTMLExporter
+from chatmark.exporters.markdown import MarkdownExporter
 from chatmark.parsers.cursor_md import CursorMarkdownParser
+from chatmark.parsers.vscode import VSCodeParser
 
 console = Console()
 
@@ -36,8 +38,13 @@ def convert(
         content = input_file.read_text(encoding="utf-8")
         internal_format = parser.parse(content)
     elif format == "vscode":
-        console.print("[bold red]Error:[/] VS Code format not yet implemented")
-        raise typer.Exit(1)
+        parser = VSCodeParser()
+        content = input_file.read_text(encoding="utf-8")
+        try:
+            internal_format = parser.parse(content)
+        except (ValueError, KeyError) as e:
+            console.print(f"[bold red]Error:[/] Failed to parse VS Code JSON: {e}")
+            raise typer.Exit(1)
     else:
         console.print(f"[bold red]Error:[/] Unknown format: {format}")
         raise typer.Exit(1)
@@ -50,8 +57,11 @@ def convert(
         result_path = exporter.export(internal_format, str(output))
         console.print(f"[bold green]Success:[/] Created {result_path}")
     elif export == "markdown":
-        console.print("[bold red]Error:[/] Markdown export not yet implemented")
-        raise typer.Exit(1)
+        exporter = MarkdownExporter()
+        if output is None:
+            output = input_file.with_suffix(".md")
+        result_path = exporter.export(internal_format, str(output))
+        console.print(f"[bold green]Success:[/] Created {result_path}")
     elif export == "pdf":
         console.print("[bold red]Error:[/] PDF export not yet implemented")
         raise typer.Exit(1)
